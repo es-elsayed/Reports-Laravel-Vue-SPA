@@ -9,43 +9,42 @@
 </template>
 
 <script>
-import Loading from './Loading'
+import Loading from "./Loading";
 
 // Load layout components dynamically.
-const requireContext = require.context('~/layouts', false, /.*\.vue$/)
+const requireContext = require.context("~/layouts", false, /.*\.vue$/);
 
-const layouts = requireContext.keys()
-  .map(file =>
-    [file.replace(/(^.\/)|(\.vue$)/g, ''), requireContext(file)]
-  )
+const layouts = requireContext
+  .keys()
+  .map((file) => [file.replace(/(^.\/)|(\.vue$)/g, ""), requireContext(file)])
   .reduce((components, [name, component]) => {
-    components[name] = component.default || component
-    return components
-  }, {})
+    components[name] = component.default || component;
+    return components;
+  }, {});
 
 export default {
-  el: '#app',
+  el: "#app",
 
   components: {
-    Loading
+    Loading,
   },
 
   data: () => ({
     layout: null,
-    defaultLayout: 'default'
+    defaultLayout: "default",
   }),
 
-  metaInfo () {
-    const { appName } = window.config
+  metaInfo() {
+    const { appName } = window.config;
 
     return {
       title: appName,
-      titleTemplate: `%s · ${appName}`
-    }
+      titleTemplate: `%s · ${appName}`,
+    };
   },
 
-  mounted () {
-    this.$loading = this.$refs.loading
+  mounted() {
+    this.$loading = this.$refs.loading;
   },
 
   methods: {
@@ -54,13 +53,22 @@ export default {
      *
      * @param {String} layout
      */
-    setLayout (layout) {
+    setLayout(layout) {
       if (!layout || !layouts[layout]) {
-        layout = this.defaultLayout
+        layout = this.defaultLayout;
       }
 
-      this.layout = layouts[layout]
-    }
-  }
-}
+      this.layout = layouts[layout];
+    },
+  },
+};
 </script>
+<style>
+@import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&display=swap");
+@import "../assets/css/style.css";
+@import "../assets/plugins/apex/apexcharts.css";
+@import "../assets/bootstrap/css/bootstrap.min.css";
+@import "../assets/fonts/icofont/icofont.min.css";
+@import "../assets/plugins/perfect-scrollbar/perfect-scrollbar.min.css";
+@import "../assets/bootstrap/css/bootstrap.min.css";
+</style>
