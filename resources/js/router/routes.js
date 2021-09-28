@@ -4,11 +4,30 @@ function page(path) {
       m => m.default || m
     );
 }
+function page2(path) {
+  return () =>
+    import(/* webpackChunkName: '' */ `~/components/${path}`).then(
+      m => m.default || m
+    );
+}
 
 export default [
   { path: "/", name: "welcome", component: page("welcome.vue") },
-  { path: "/about", name: "about", component: page("about") },
 
+  // start of my custom route
+  { path: "/about", name: "about", component: page("about") },
+  {
+    path: "/project",
+    name: "project",
+    component: page("project/TheProjects.vue")
+  },
+  {
+    path: "/project/create",
+    name: "project.create",
+    component: page2("Project/CreateProject.vue")
+  },
+
+  // end of my custom route
   { path: "/login", name: "login", component: page("auth/login.vue") },
   { path: "/register", name: "register", component: page("auth/register.vue") },
   {
