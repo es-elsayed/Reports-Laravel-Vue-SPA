@@ -30,7 +30,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('settings/profile', [ProfileController::class, 'update']);
     Route::patch('settings/password', [PasswordController::class, 'update']);
     // custom routes
-    Route::get('/projects', [ProjectController::class,'index']);
+    Route::get('/projects/{id}', [ProjectController::class,'index']);
+    Route::post('/projects', [ProjectController::class,'store']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

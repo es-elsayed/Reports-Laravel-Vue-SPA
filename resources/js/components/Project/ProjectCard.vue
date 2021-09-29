@@ -5,27 +5,27 @@
       <!-- Custom Checkbox -->
       <label class="custom-checkbox" style="display: none">
         <input type="checkbox" class="projectCheckbox" />
-        <span class="checkmark"></span>
+        <span class="checkmark" />
       </label>
       <!-- End Custom Checkbox -->
 
       <div class="d-flex justify-content-between align-items-center mb-20">
         <div class="">
-          <a href="task-list.html"
-            ><h4>{{ projectTitle }}</h4></a
+          <router-link :to="computedFun">
+            <h4>{{ projectTitle }}</h4></router-link
           >
         </div>
         <div class="d-flex align-items-center">
           <!-- Starred -->
-          <div class="star">
+          <!-- <div class="star"
             <a href="#"
               ><img src="../../assets/img/svg/star.svg" alt="" class="svg"
             /></a>
-          </div>
+          </div> -->
           <!-- End Starred -->
 
           <!-- Dropdown Button -->
-          <div class="dropdown-button ml-3">
+          <!-- <div class="dropdown-button ml-3">
             <a
               href="#"
               class="d-flex align-items-center"
@@ -52,7 +52,7 @@
               <a href="#" class="select">Select</a>
               <a href="#" class="delete">Delete</a>
             </div>
-          </div>
+          </div> -->
           <!-- End Dropdown Button -->
         </div>
       </div>
@@ -60,7 +60,7 @@
       <div class="d-flex justify-content-between align-items-end pt-1">
         <div class="font-12">
           <p class="mb-0 l-height">Last update</p>
-          <p class="bold black">21 Jan 2019</p>
+          <p class="bold black">{{ lastUpdate | formatDate }}</p>
         </div>
 
         <!-- <div class="member"> -->
@@ -75,6 +75,12 @@
 </template>
 <script>
 export default {
-  props: ["projectTitle"],
+  computed: {
+    computedFun() {
+      // return '/project/' + this.projectId + '/list'
+      return { name: "project.lists", params: { id: this.projectId } };
+    }
+  },
+  props: ["projectId", "projectTitle", "lastUpdate"]
 };
 </script>

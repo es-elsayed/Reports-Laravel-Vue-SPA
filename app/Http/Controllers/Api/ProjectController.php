@@ -13,9 +13,12 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Project::all();
+        // return $request;
+        $projects = Project::where(["user_id" => $request->id])->get();
+
+        return $projects;
     }
 
     /**
@@ -36,7 +39,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $project = Project::create([
+            'title' => $request->project_title,
+            'user_id' => $request->user_id,
+        ]);
+        return $project;
     }
 
     /**

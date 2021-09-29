@@ -23,11 +23,11 @@
         "
       >
         <!-- Add New Contact Btn -->
-        <div class="add-new-contact mr-20">
+        <!-- <div class="add-new-contact mr-20">
           <router-link :to="{ name: 'project' }" class="btn-home">
             <img src="../../assets/img/svg/home.svg" alt="" class="svg" />
           </router-link>
-        </div>
+        </div> -->
         <!-- End Add New Contact Btn -->
 
         <!-- Starred -->
@@ -41,6 +41,7 @@
         <!-- Add Title -->
         <form action="#" class="add-title flex-grow">
           <input
+            ref="projectName"
             type="text"
             class="theme-input-style bold"
             placeholder="Project Name"
@@ -60,17 +61,19 @@
         "
       >
         <!-- Member -->
-        <div class="member style--two d-flex mb-2 mb-sm-0">
+        <!-- <div class="member style--two d-flex mb-2 mb-sm-0">
           <a href="#"><img src="../../assets/img/avatar/m2.png" alt="" /></a>
           <a href="#" class="btn-circle">
             <img src="../../assets/img/svg/plus_white.svg" alt="" class="svg" />
           </a>
-        </div>
+        </div> -->
         <!-- End Member -->
 
         <!-- Create New Board -->
         <div class="create-new-board mb-2 mb-sm-0">
-          <a href="#" class="btn">save Now</a>
+          <button type="button" @click.stop="createProject" class="btn">
+            Create
+          </button>
         </div>
         <!-- End Create New Board -->
 
@@ -89,3 +92,25 @@
     <!-- End Board Header -->
   </div>
 </template>
+<script>
+import axios from "axios";
+export default {
+  props: ["userId"],
+  emits: ["createdProjectSuccessfully"],
+  data() {
+    return {};
+  },
+  methods: {
+    createProject() {
+      axios
+        .post("http://127.0.0.1:8001/api/projects", {
+          project_title: this.$refs.projectName.value,
+          user_id: this.userId,
+        })
+        .then((res) => console.log(res));
+      this.$refs.projectName.value = "";
+      this.$emit("createdProjectSuccessfully");
+    },
+  },
+};
+</script>

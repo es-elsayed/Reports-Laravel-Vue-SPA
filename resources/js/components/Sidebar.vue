@@ -15,7 +15,7 @@
       <!-- Nav -->
       <ul class="nav">
         <li>
-          <router-link link mode="flat" to="/project">
+          <router-link link mode="flat" :to="{name:'projects'}">
             <i class="icofont-calendar"></i>
             <span class="link-title">project manager</span>
           </router-link>
