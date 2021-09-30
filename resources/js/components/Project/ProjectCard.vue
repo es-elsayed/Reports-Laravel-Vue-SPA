@@ -76,11 +76,11 @@
 <script>
 export default {
   computed: {
-    computedFun() {
+    computedFun () {
       // return '/project/' + this.projectId + '/list'
-      return { name: "project.lists", params: { id: this.projectId } };
+      return { name: 'report.lists', params: { id: this.projectId } }
     }
   },
-  props: ["projectId", "projectTitle", "lastUpdate"]
-};
+  props: ['projectId', 'projectTitle', 'lastUpdate']
+}
 </script>

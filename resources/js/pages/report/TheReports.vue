@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     getAllProjects () {
-      axios.get(`/api/projects/${this.user.id}`).then(res => {
+      axios.get(`/api/reports/${this.user.id}`).then(res => {
         this.projects = res.data
         console.log(res.data)
       })

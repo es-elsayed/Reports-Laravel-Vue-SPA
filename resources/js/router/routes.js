@@ -11,14 +11,15 @@ export default [
   // start of my custom route
   { path: '/about', name: 'about', component: page('about') },
   {
-    path: '/projects',
-    name: 'projects',
-    component: page('project/TheProjects.vue')
+    path: '/reports',
+    name: 'reports',
+    component: page('report/TheReports.vue')
   },
   {
-    path: '/project/:id/list',
-    name: 'project.lists',
-    component: page('project/ProjectList.vue')
+    path: '/report/:id/list',
+    name: 'report.lists',
+    params: true,
+    component: page('report/ReportList.vue')
   },
 
   // end of my custom route

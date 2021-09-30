@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,9 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        // return $request;
-        $projects = Project::where(["user_id" => $request->id])->get();
-
-        return $projects;
+        // return $request->id;
+        $tasks = Task::where(["report_id" => $request->id])->get();
+        return $tasks;
     }
 
     /**
@@ -39,12 +38,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
-        $project = Project::create([
-            'title' => $request->project_title,
-            'user_id' => $request->user_id,
-        ]);
-        return $project;
+        return $request;
     }
 
     /**

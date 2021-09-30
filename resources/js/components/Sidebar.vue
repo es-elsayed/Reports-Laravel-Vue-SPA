@@ -15,9 +15,9 @@
       <!-- Nav -->
       <ul class="nav">
         <li>
-          <router-link link mode="flat" :to="{name:'projects'}">
+          <router-link link mode="flat" :to="{name:'reports'}">
             <i class="icofont-calendar"></i>
-            <span class="link-title">project manager</span>
+            <span class="link-title">Reports</span>
           </router-link>
         </li>
       </ul>

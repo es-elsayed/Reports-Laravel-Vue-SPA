@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\ReportController;
+use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\OAuthController;
@@ -30,8 +31,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('settings/profile', [ProfileController::class, 'update']);
     Route::patch('settings/password', [PasswordController::class, 'update']);
     // custom routes
-    Route::get('/projects/{id}', [ProjectController::class,'index']);
-    Route::post('/projects', [ProjectController::class,'store']);
+    Route::get('/reports/{id}', [ReportController::class,'index']);
+    Route::post('/reports', [ReportController::class,'store']);
+
+    Route::get('reports/{id}/tasks', [TaskController::class,'index']);
+    Route::post('reports/{id}/tasks', [TaskController::class,'store']);
+
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
