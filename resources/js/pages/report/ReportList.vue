@@ -1,13 +1,13 @@
 <template>
   <div class="board-wrapper">
-    <div  @click="toggleAddBoard=false" />
+    <div @click="toggleAddBoard = false" />
     <!-- <project-board /> -->
     <div class="board w-100">
       <!-- Board Composer -->
       <!-- -->
       <div class="add-card add-another-list" style="">
         <h4 class="c4 text-center" @click="toggleAdd">Add another list</h4>
-        <add-task v-if="!toggleAddBoard" />
+        <add-task :projects="projects" v-if="!toggleAddBoard" />
         <!-- <form  @submit.prevent="addNewList">
           <input
             type="text"
@@ -22,6 +22,7 @@
   <!-- <add-task @toggle-add-list="toggleAddBoard = true" /> -->
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import axios from 'axios'
 import AddTask from '../../components/Task/AddTask.vue'
 // import ProjectBoard from '../../components/Project/ProjectBoard.vue'
@@ -35,6 +36,7 @@ export default {
   data() {
     return {
       toggleAddBoard: false,
+      projects: []
       // newTask: {
       //   title: this.$refs.task_name.value,
       //   report_id: this.$route.params.id,
@@ -46,8 +48,13 @@ export default {
       // }
     }
   },
+  computed: mapGetters({
+    user: 'auth/user',
+    token: 'auth/token'
+  }),
   mounted() {
     this.getAllList()
+    this.getAllProjects()
   },
   methods: {
     toggleAdd() {
@@ -63,6 +70,9 @@ export default {
       axios
         .get(`/api/reports/${this.$route.params.id}/tasks`)
         .then(res => console.log(res.data))
+    },
+    getAllProjects() {
+      axios.get('/api/projects').then(res => (this.projects = res.data))
     }
   }
 }

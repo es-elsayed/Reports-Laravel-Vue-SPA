@@ -23,9 +23,11 @@
             aria-label=".form-select-lg example"
           >
             <!-- <option selected>Open this select menu</option> -->
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            <option value="1" v-for="project in projects" :key="project.id">{{
+              project.title
+            }}</option>
+            <!-- <option value="2">2</option>
+            <option value="3">3</option> -->
           </select>
         </div>
 
@@ -186,7 +188,8 @@ import { mapGetters } from 'vuex'
 
 export default {
   emits: ['toggle-add-list'],
-  data () {
+  props: ['projects'],
+  data() {
     return {
       hours: 0,
       minutes: 0
@@ -197,12 +200,12 @@ export default {
     token: 'auth/token'
   }),
   watch: {
-    hours () {
+    hours() {
       if (this.hours <= 0) {
         return (this.hours = 0)
       }
     },
-    minutes () {
+    minutes() {
       if (this.minutes <= 0) {
         return (this.minutes = 0)
       }
@@ -213,19 +216,19 @@ export default {
     }
   },
   methods: {
-    incrementHours () {
+    incrementHours() {
       return this.hours++
     },
-    decrementHours () {
+    decrementHours() {
       return this.hours--
     },
-    incrementMinutes () {
+    incrementMinutes() {
       return this.minutes++
     },
-    decrementMinutes () {
+    decrementMinutes() {
       return this.minutes--
     },
-    addNewTask () {
+    addNewTask() {
       // return console.log(this.$route.params.id);
       axios
         .post(`/api/reports/${this.$route.params.id}/tasks`, {

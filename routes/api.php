@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Dusk\Http\Controllers\UserController as ControllersUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('reports/{id}/tasks', [TaskController::class,'store']);
 
     Route::get('projects', [ProjectController::class,'index']);
+    Route::get('users', [ControllersUserController::class,'index']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
