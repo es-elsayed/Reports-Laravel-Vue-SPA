@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -37,6 +38,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('reports/{id}/tasks', [TaskController::class,'index']);
     Route::post('reports/{id}/tasks', [TaskController::class,'store']);
 
+    Route::get('projects', [ProjectController::class,'index']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
