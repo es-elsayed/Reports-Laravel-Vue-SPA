@@ -24,22 +24,22 @@
       >
         <!-- Starred -->
         <div class="star mr-20">
-          <router-link to=""
-            ><img src="../../assets/img/svg/star.svg" alt="" class="svg"
-          /></router-link>
+          <router-link to="">
+            <img src="../../assets/img/svg/star.svg" alt="" class="svg">
+          </router-link>
         </div>
         <!-- End Starred -->
 
         <!-- Add Title -->
-        <form @submit.prevent="" class="add-title flex-grow">
+        <form class="add-title flex-grow" @submit.prevent="">
           <div class="row">
-            <div class="col-8">
+            <div class="col-4">
               <input
                 ref="projectName"
                 type="text"
                 class="theme-input-style bold"
                 placeholder="Report Name"
-              />
+              >
             </div>
             <div class="col-4">
               <!-- <label for="current_date" class="form-label">Current Date</label>
@@ -50,8 +50,11 @@
                 class="form-control border border-info"
                 type="date"
                 name="current_date"
-              />
+              >
             </div>
+            <!-- <div class="col-4"><button type="button" class="btn btn-primary" @click.stop="createProject">
+            Create
+          </button></div> -->
           </div>
         </form>
         <!-- End Add Title -->
@@ -69,21 +72,21 @@
       >
         <!-- Create New Board -->
         <div class="create-new-board mb-2 mb-sm-0">
-          <button type="button" @click.stop="createProject" class="btn">
+          <button type="button" class="btn btn-primary" @click.stop="createProject">
             Create
           </button>
         </div>
         <!-- End Create New Board -->
 
         <!-- Board Close -->
-        <div class="">
+        <!-- <div class="">
           <a
             href="#"
             class="close-btn d-flex align-items-center justify-content-center"
-          >
-            <i class="icofont-close-line"></i>
+          > hi
+            <i class="icofont-close-line" />
           </a>
-        </div>
+        </div> -->
         <!-- End Attachment Close -->
       </div>
     </div>
@@ -95,11 +98,11 @@ import axios from 'axios'
 export default {
   props: ['userId'],
   emits: ['createdProjectSuccessfully'],
-  data() {
+  data () {
     return {}
   },
   methods: {
-    createProject() {
+    createProject () {
       axios
         .post('api/reports', {
           title: this.$refs.projectName.value,

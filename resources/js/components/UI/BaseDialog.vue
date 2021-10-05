@@ -4,7 +4,6 @@
     <dialog open>
       <header>
         <slot name="header">
-          <h2>{{ title }}</h2>
         </slot>
       </header>
       <section>
