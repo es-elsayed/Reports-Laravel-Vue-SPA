@@ -22,14 +22,6 @@
           mr-md-4
         "
       >
-        <!-- Add New Contact Btn -->
-        <!-- <div class="add-new-contact mr-20">
-          <router-link :to="{ name: 'project' }" class="btn-home">
-            <img src="../../assets/img/svg/home.svg" alt="" class="svg" />
-          </router-link>
-        </div> -->
-        <!-- End Add New Contact Btn -->
-
         <!-- Starred -->
         <div class="star mr-20">
           <router-link to=""
@@ -39,13 +31,28 @@
         <!-- End Starred -->
 
         <!-- Add Title -->
-        <form action="#" class="add-title flex-grow">
-          <input
-            ref="projectName"
-            type="text"
-            class="theme-input-style bold"
-            placeholder="Project Name"
-          />
+        <form @submit.prevent="" class="add-title flex-grow">
+          <div class="row">
+            <div class="col-8">
+              <input
+                ref="projectName"
+                type="text"
+                class="theme-input-style bold"
+                placeholder="Report Name"
+              />
+            </div>
+            <div class="col-4">
+              <!-- <label for="current_date" class="form-label">Current Date</label>
+              <br> -->
+              <input
+                id="current_date"
+                ref="current_date"
+                class="form-control border border-info"
+                type="date"
+                name="current_date"
+              />
+            </div>
+          </div>
         </form>
         <!-- End Add Title -->
       </div>
@@ -60,15 +67,6 @@
           mt-3 mt-md-0
         "
       >
-        <!-- Member -->
-        <!-- <div class="member style--two d-flex mb-2 mb-sm-0">
-          <a href="#"><img src="../../assets/img/avatar/m2.png" alt="" /></a>
-          <a href="#" class="btn-circle">
-            <img src="../../assets/img/svg/plus_white.svg" alt="" class="svg" />
-          </a>
-        </div> -->
-        <!-- End Member -->
-
         <!-- Create New Board -->
         <div class="create-new-board mb-2 mb-sm-0">
           <button type="button" @click.stop="createProject" class="btn">
@@ -93,24 +91,26 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import axios from 'axios'
 export default {
-  props: ["userId"],
-  emits: ["createdProjectSuccessfully"],
+  props: ['userId'],
+  emits: ['createdProjectSuccessfully'],
   data() {
-    return {};
+    return {}
   },
   methods: {
     createProject() {
       axios
-        .post("http://127.0.0.1:8001/api/projects", {
-          project_title: this.$refs.projectName.value,
-          user_id: this.userId,
+        .post('api/reports', {
+          title: this.$refs.projectName.value,
+          current_date: this.$refs.current_date.value,
+          user_id: this.userId
         })
-        .then((res) => console.log(res));
-      this.$refs.projectName.value = "";
-      this.$emit("createdProjectSuccessfully");
-    },
-  },
-};
+        .then(res => console.log(res))
+      this.$refs.projectName.value = ''
+      console.log(this.$refs.current_date.value)
+      this.$emit('createdProjectSuccessfully')
+    }
+  }
+}
 </script>

@@ -12,7 +12,7 @@
       <div class="d-flex justify-content-between align-items-center mb-20">
         <div class="">
           <router-link :to="computedFun">
-            <h4>{{ projectTitle }}</h4></router-link
+            <h4>{{ report.title }}</h4></router-link
           >
         </div>
         <div class="d-flex align-items-center">
@@ -59,8 +59,8 @@
 
       <div class="d-flex justify-content-between align-items-end pt-1">
         <div class="font-12">
-          <p class="mb-0 l-height">Last update</p>
-          <p class="bold black">{{ lastUpdate | formatDate }}</p>
+          <p class="mb-0 l-height">Created at</p>
+          <p class="bold black">{{ report.current_date | formatDate }}</p>
         </div>
 
         <!-- <div class="member"> -->
@@ -78,9 +78,9 @@ export default {
   computed: {
     computedFun () {
       // return '/project/' + this.projectId + '/list'
-      return { name: 'report.lists', params: { id: this.projectId } }
+      return { name: 'report.lists', params: { id: this.report.id } }
     }
   },
-  props: ['projectId', 'projectTitle', 'lastUpdate']
+  props: ['report']
 }
 </script>

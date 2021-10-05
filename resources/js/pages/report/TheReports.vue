@@ -10,11 +10,9 @@
     </div>
     <div class="row">
       <project-card
-        v-for="project in projects"
-        :key="project.id"
-        :projectTitle="project.title"
-        :lastUpdate="project.updated_at"
-        :projectId="project.id"
+        v-for="report in reports"
+        :key="report.id"
+        :report='report'
       />
       <!-- <div v-for="project in projects">{{ project.title }}</div> -->
       <!-- <create-project></create-project> -->
@@ -31,7 +29,7 @@ export default {
   components: { ProjectCard, ProjectHeader },
   data () {
     return {
-      projects: []
+      reports: []
     }
   },
   computed: mapGetters({
@@ -44,7 +42,7 @@ export default {
   methods: {
     getAllProjects () {
       axios.get(`/api/reports/${this.user.id}`).then(res => {
-        this.projects = res.data
+        this.reports = res.data
         console.log(res.data)
       })
     }

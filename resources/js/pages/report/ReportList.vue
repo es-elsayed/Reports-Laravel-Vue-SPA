@@ -1,51 +1,58 @@
 <template>
-  <div class="board-wrapper">
-    <div @click="toggleAddBoard = false" />
-    <!-- <project-board /> -->
-    <div class="board w-100">
-      <!-- Board Composer -->
-      <!-- -->
-      <div class="add-card add-another-list" style="">
-        <h4 class="c4 text-center" @click="toggleAdd">Add another list</h4>
-        <add-task :projects="projects" v-if="!toggleAddBoard" />
-        <!-- <form  @submit.prevent="addNewList">
-          <input
-            type="text"
-            class="theme-input-style"
-            placeholder="List Title"
-          />
-        </form> -->
+  <div class="container-fluid">
+    <div class="row">
+      <table class="dh-table">
+        <thead class="text_color-bg text-white">
+          <tr>
+            <th>Task Title</th>
+            <th>Project Name</th>
+            <th>Date</th>
+            <th>Role</th>
+            <th>Who is Assign</th>
+            <th>Description</th>
+            <th>Time</th>
+            <th>Difficulties</th>
+          </tr>
+        </thead>
+        <tbody>
+          <task-card v-for="task in tasks" :key="task.id" :task="task" />
+        </tbody>
+      </table>
+      <div class="board-wrapper">
+        <div class="board w-100">
+          <div class="add-card add-another-list" style="">
+            <h4 class="c4 text-center" @click="toggleAdd">Add another list</h4>
+            <add-task
+              v-if="!toggleAddBoard"
+              :projects="projects"
+              :users="users"
+              @add-task="listenToEmit"
+            />
+            <!-- <base-dialog @close="hi" v-if="!toggleAddBoard" /> -->
+          </div>
+        </div>
       </div>
     </div>
-    <!-- End Board Composer -->
   </div>
-  <!-- <add-task @toggle-add-list="toggleAddBoard = true" /> -->
 </template>
 <script>
 import { mapGetters } from 'vuex'
 import axios from 'axios'
 import AddTask from '../../components/Task/AddTask.vue'
-// import ProjectBoard from '../../components/Project/ProjectBoard.vue'
-// import AddTask from '../../components/Task/AddTask.vue'
+import TaskCard from '../../components/Task/TaskCard.vue'
+// import BaseDialog from '../../components/UI/BaseDialog.vue'
 export default {
   components: {
-    AddTask
-    // ProjectBoard,
-    // AddTask
+    AddTask,
+    TaskCard
+    // BaseDialog
   },
   data() {
     return {
-      toggleAddBoard: false,
-      projects: []
-      // newTask: {
-      //   title: this.$refs.task_name.value,
-      //   report_id: this.$route.params.id,
-      //   who_is_assign: 'static',
-      //   project_name: this.$refs.project_name.value,
-      //   role: 'static eng.',
-      //   description: this.$refs.description.value,
-      //   difficulties: this.$refs.difficulties.value
-      // }
+      toggleAddBoard: true,
+      tasks: [],
+      projects: [],
+      users: []
     }
   },
   computed: mapGetters({
@@ -55,24 +62,33 @@ export default {
   mounted() {
     this.getAllList()
     this.getAllProjects()
+    this.getAllUsers()
+  },
+  afterUpdated() {
+    this.getAllList()
+    console.log('hi')
   },
   methods: {
+    hi() {
+      console.log('hi')
+    },
     toggleAdd() {
       this.toggleAddBoard = !this.toggleAddBoard
     },
-    // addNewList() {
-    //   // return console.log(this.$route.params.id);
-    //   axios
-    //     .post(`/api/reports/${this.$route.params.id}/tasks`, this.newTask)
-    //     .then(res => console.log(res.data))
-    // },
     getAllList() {
       axios
         .get(`/api/reports/${this.$route.params.id}/tasks`)
-        .then(res => console.log(res.data))
+        .then(res => (this.tasks = res.data))
     },
     getAllProjects() {
       axios.get('/api/projects').then(res => (this.projects = res.data))
+    },
+    getAllUsers() {
+      axios.get('/api/users').then(res => (this.users = res.data))
+    },
+    listenToEmit() {
+      this.getAllList()
+      this.toggleAddBoard = true
     }
   }
 }

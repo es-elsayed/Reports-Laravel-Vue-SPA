@@ -11,6 +11,7 @@ class Report extends Model
     protected $fillable = [
         'id',
         'title',
+        'current_date',
         'user_id',
     ];
     // protected $hidden = [

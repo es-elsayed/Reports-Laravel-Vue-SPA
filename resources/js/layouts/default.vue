@@ -4,7 +4,7 @@
     <navbar />
 
     <div class="main-wrapper">
-      <sidebar />
+      <sidebar v-if="user" />
 
       <div class="main-content mt-4">
         <child />
@@ -22,16 +22,20 @@
 </template>
 
 <script>
-import Navbar from "~/components/Navbar";
-import Sidebar from "~/components/Sidebar";
+import { mapGetters } from 'vuex'
+import Navbar from '~/components/Navbar'
+import Sidebar from '~/components/Sidebar'
 // import ProjectCard from "~/components/Project/ProjectCard";
 export default {
-  name: "MainLayout",
+  computed: mapGetters({
+    user: 'auth/user'
+  }),
+  name: 'MainLayout',
 
   components: {
     Navbar,
-    Sidebar,
+    Sidebar
     // ProjectCard,
-  },
-};
+  }
+}
 </script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Task;
+use Exception;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -38,7 +39,27 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        try {
+            //code...
+          $task=  Task::create([
+            'title'=>$request->title,
+            'project_name'=>$request->project_name,
+            'role'=>$request->role,
+            'report_id'=>$request->report_id,
+            'who_is_assign'=>$request->who_is_assign,
+            'description'=>$request->description,
+            'current_date'=>$request->current_date,
+            'difficulties'=>$request->difficulties,
+            'hours'=>$request->hours,
+            'minutes'=>$request->minutes,
+            'user_id'=>$request->user_id,
+          ]);
+        return 'task added successfully';
+    } catch (\Exception $ex) {
+            return $ex;
+            //throw $th;
+        }
+
     }
 
     /**

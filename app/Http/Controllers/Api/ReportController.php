@@ -37,11 +37,16 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        $project = Report::create([
-            'title' => $request->project_title,
-            'user_id' => $request->user_id,
-        ]);
-        return $project;
+        try {
+            $report = Report::create([
+                'title' => $request->title,
+                'current_date' => $request->current_date,
+                'user_id' => $request->user_id,
+            ]);
+            return $report;
+        } catch (\Exception $ex) {
+            return $ex;
+        }
     }
 
     /**
