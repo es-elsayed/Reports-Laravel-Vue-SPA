@@ -22,39 +22,37 @@
           mr-md-4
         "
       >
-        <!-- Starred -->
-        <div class="star mr-20">
-          <router-link to="">
-            <img src="../../assets/img/svg/star.svg" alt="" class="svg">
-          </router-link>
-        </div>
-        <!-- End Starred -->
-
         <!-- Add Title -->
-        <form class="add-title flex-grow" @submit.prevent="">
+        <form class="flex-grow" @submit.prevent="createProject">
           <div class="row">
             <div class="col-4">
               <input
-                ref="projectName"
+                v-model.trim="projectName"
                 type="text"
                 class="theme-input-style bold"
                 placeholder="Report Name"
               >
             </div>
-            <div class="col-4">
+            <div class="col-4 m-auto">
               <!-- <label for="current_date" class="form-label">Current Date</label>
               <br> -->
               <input
                 id="current_date"
-                ref="current_date"
+                v-model="currentDate"
                 class="form-control border border-info"
                 type="date"
                 name="current_date"
               >
             </div>
-            <!-- <div class="col-4"><button type="button" class="btn btn-primary" @click.stop="createProject">
-            Create
-          </button></div> -->
+            <div class="col-2 m-auto">
+              <button
+                type="submit"
+                :disabled="!canCreate"
+                class="btn btn-primary"
+              >
+                Create
+              </button>
+            </div>
           </div>
         </form>
         <!-- End Add Title -->
@@ -71,11 +69,11 @@
         "
       >
         <!-- Create New Board -->
-        <div class="create-new-board mb-2 mb-sm-0">
+        <!-- <div class="create-new-board mb-2 mb-sm-0">
           <button type="button" class="btn btn-primary" @click.stop="createProject">
             Create
           </button>
-        </div>
+        </div> -->
         <!-- End Create New Board -->
 
         <!-- Board Close -->
@@ -99,20 +97,50 @@ export default {
   props: ['userId'],
   emits: ['createdProjectSuccessfully'],
   data () {
-    return {}
+    return {
+      projectName: '',
+      currentDate: null,
+      canCreate: false
+    }
+  },
+  watch: {
+    projectName () {
+      if (this.projectName.length >= 3) {
+        return (this.canCreate = true)
+      } else return (this.canCreate = false)
+    }
   },
   methods: {
     createProject () {
-      axios
-        .post('api/reports', {
-          title: this.$refs.projectName.value,
-          current_date: this.$refs.current_date.value,
-          user_id: this.userId
-        })
-        .then(res => console.log(res))
-      this.$refs.projectName.value = ''
-      console.log(this.$refs.current_date.value)
-      this.$emit('createdProjectSuccessfully')
+      if (this.projectName.length >= 3 && this.currentDate !== null) {
+        axios
+          .post('api/reports', {
+            title: this.projectName,
+            current_date: this.currentDate,
+            user_id: this.userId
+          })
+          .then(res => console.log(res))
+        this.projectName = ''
+        console.log(this.currentDate)
+        this.$emit('createdProjectSuccessfully')
+      } else if (this.projectName.length >= 3 && this.currentDate === null) {
+        const current = new Date()
+        const date = `${current.getFullYear()}-${current.getMonth() +
+          1}-${current.getDate()}`
+        axios
+          .post('api/reports', {
+            title: this.projectName,
+            current_date: date,
+            user_id: this.userId
+          })
+          .then(res => console.log(res))
+        this.projectName = ''
+        console.log(this.currentDate)
+        this.$emit('createdProjectSuccessfully')
+      }
+      else {
+        return console.log('Error.. Please try again later!');
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <table class="dh-table">
+      <table v-if="tasks.length > 0" class="dh-table">
         <thead class="text_color-bg text-white">
           <tr>
             <th>Task Title</th>
@@ -25,14 +25,14 @@
               Add another list
             </h4>
             <section>
-              <div class="blur"  v-if="!toggleAddBoard" @click="toggleAdd" />
-              <dialog open  v-if="!toggleAddBoard">
-                  <add-task
-                    :projects="projects"
-                    :users="users"
-                    @add-task="listenToEmit"
-                    @close="toggleAdd"
-                  />
+              <div v-if="!toggleAddBoard" class="blur" @click="toggleAdd" />
+              <dialog v-if="!toggleAddBoard" open>
+                <add-task
+                  :projects="projects"
+                  :users="users"
+                  @add-task="listenToEmit"
+                  @close="toggleAdd"
+                />
               </dialog>
             </section>
             <!-- <base-dialog @close="hi" v-if="!toggleAddBoard" /> -->
