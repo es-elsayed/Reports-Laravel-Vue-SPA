@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TaskRequest;
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Exception;
 use Illuminate\Http\Request;
@@ -18,7 +20,7 @@ class TaskController extends Controller
     {
         // return $request->id;
         $tasks = Task::where(["report_id" => $request->id])->get();
-        return $tasks;
+        return TaskResource::collection($tasks);
     }
 
     /**
@@ -37,10 +39,9 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
         try {
-            //code...
           $task=  Task::create([
             'title'=>$request->title,
             'project_name'=>$request->project_name,
@@ -54,10 +55,9 @@ class TaskController extends Controller
             'minutes'=>$request->minutes,
             'user_id'=>$request->user_id,
           ]);
-        return 'task added successfully';
+        return new TaskResource($task);
     } catch (\Exception $ex) {
             return $ex;
-            //throw $th;
         }
 
     }

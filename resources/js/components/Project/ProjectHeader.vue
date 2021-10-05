@@ -108,7 +108,15 @@ export default {
       if (this.projectName.length >= 3) {
         return (this.canCreate = true)
       } else return (this.canCreate = false)
-    }
+    },
+    // currentDate () {
+    //   if (this.currentDate === null) {
+    //     const current = new Date()
+    //     const date = `${current.getFullYear()}-${current.getMonth() +
+    //       1}-${current.getDate()}`
+    //     this.currentDate = date
+    //   }
+    // }
   },
   methods: {
     createProject () {
@@ -137,9 +145,8 @@ export default {
         this.projectName = ''
         console.log(this.currentDate)
         this.$emit('createdProjectSuccessfully')
-      }
-      else {
-        return console.log('Error.. Please try again later!');
+      } else {
+        return console.log('Error.. Please try again later!')
       }
     }
   }

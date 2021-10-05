@@ -456,7 +456,7 @@ export default {
           minutes: this.minutes,
           user_id: this.user.id
         })
-        .then(res => console.log(res.data))
+        .then(res => console.log(res.data.data))
       this.taskName = null
       this.projectName = null
       this.role = null

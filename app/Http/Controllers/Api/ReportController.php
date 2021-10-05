@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReportRequest;
+use App\Http\Resources\ReportResource;
 use App\Models\Report;
 use Illuminate\Http\Request;
 
@@ -16,7 +18,7 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         $projects = Report::where(["user_id" => $request->id])->get();
-        return $projects;
+        return ReportResource::collection($projects);
     }
 
     /**
@@ -35,18 +37,18 @@ class ReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReportRequest $request)
     {
-        try {
+        // try {
             $report = Report::create([
                 'title' => $request->title,
                 'current_date' => $request->current_date,
                 'user_id' => $request->user_id,
             ]);
-            return $report;
-        } catch (\Exception $ex) {
-            return $ex;
-        }
+            return new ReportResource($report);
+        // } catch (\Exception $ex) {
+        //     return $ex;
+        // }
     }
 
     /**

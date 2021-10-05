@@ -84,9 +84,10 @@ export default {
       this.toggleAddBoard = !this.toggleAddBoard
     },
     getAllList () {
-      axios
-        .get(`/api/reports/${this.$route.params.id}/tasks`)
-        .then(res => (this.tasks = res.data))
+      axios.get(`/api/reports/${this.$route.params.id}/tasks`).then(res => {
+        this.tasks = res.data.data
+        console.log(res.data.data)
+      })
     },
     getAllProjects () {
       axios.get('/api/projects').then(res => (this.projects = res.data))

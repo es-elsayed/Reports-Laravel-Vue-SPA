@@ -4,7 +4,7 @@
   <div class="container-fluid">
     <div class="row">
       <project-header
-        :userId="user.id"
+        :user-id="user.id"
         @createdProjectSuccessfully="getAllProjects"
       />
     </div>
@@ -12,7 +12,7 @@
       <project-card
         v-for="report in reports"
         :key="report.id"
-        :report='report'
+        :report="report"
       />
       <!-- <div v-for="project in projects">{{ project.title }}</div> -->
       <!-- <create-project></create-project> -->
@@ -42,8 +42,12 @@ export default {
   methods: {
     getAllProjects () {
       axios.get(`/api/reports/${this.user.id}`).then(res => {
-        this.reports = res.data
-        console.log(res.data)
+        if (res.data) {
+          this.reports = res.data.data
+        } else {
+          this.reports = []
+        }
+        console.log(res.data.data)
       })
     }
   }
