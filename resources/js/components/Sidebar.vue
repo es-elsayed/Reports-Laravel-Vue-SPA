@@ -4,7 +4,7 @@
     <div class="sidebar-header d-none d-lg-block">
       <!-- Sidebar Toggle Pin Button -->
       <div class="sidebar-toogle-pin">
-        <i class="icofont-tack-pin"></i>
+        <i class="icofont-tack-pin" />
       </div>
       <!-- End Sidebar Toggle Pin Button -->
     </div>
@@ -15,8 +15,8 @@
       <!-- Nav -->
       <ul class="nav">
         <li>
-          <router-link link mode="flat" :to="{name:'reports'}">
-            <i class="icofont-calendar"></i>
+          <router-link link mode="flat" :to="{ name: 'reports' }">
+            <i class="icofont-calendar" />
             <span class="link-title">Reports</span>
           </router-link>
         </li>
@@ -27,8 +27,7 @@
   </nav>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 
-<style>
-</style>
+<style></style>

@@ -1,35 +1,33 @@
 <template>
-  <!-- <card :title="'name of allah'">
-   </card> -->
   <div class="container-fluid">
-    <div class="row">
-      <project-header
-        :user-id="user.id"
-        @createdProjectSuccessfully="getAllProjects"
-      />
-    </div>
-    <div class="row">
-      <project-card
-        v-for="report in reports"
-        :key="report.id"
-        :report="report"
-      />
-      <!-- <div v-for="project in projects">{{ project.title }}</div> -->
-      <!-- <create-project></create-project> -->
-    </div>
+    <section>
+      <div class="blur" @click="$router.back()" />
+      <dialog open>
+        <add-task
+          :projects="projects"
+          :users="users"
+          @add-task="listenToEmit"
+        />
+      </dialog>
+    </section>
   </div>
 </template>
 <script>
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 
-import ProjectCard from '../../components/Project/ProjectCard.vue'
-import ProjectHeader from '../../components/Project/ProjectHeader.vue'
+import AddTask from '../../components/Task/AddTask.vue'
 export default {
-  components: { ProjectCard, ProjectHeader },
+  components: {
+    AddTask
+  },
+  // beforeRouteEnter (to, from, next) {
+  //   console.log(this.user);
+  // },
   data () {
     return {
-      reports: []
+      projects: [],
+      users: []
     }
   },
   computed: mapGetters({
@@ -38,18 +36,50 @@ export default {
   }),
   mounted () {
     this.getAllProjects()
+    this.getAllUsers()
   },
   methods: {
     getAllProjects () {
-      axios.get(`/api/reports/${this.user.id}`).then(res => {
-        if (res.data) {
-          this.reports = res.data.data
-        } else {
-          this.reports = []
-        }
-        console.log(res.data.data)
-      })
+      axios.get('/api/projects').then(res => (this.projects = res.data))
+    },
+    getAllUsers () {
+      axios.get('/api/users').then(res => (this.users = res.data))
+    },
+    listenToEmit () {
+      this.getAllList()
     }
   }
 }
 </script>
+<style scoped>
+div.blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+}
+
+dialog {
+  position: fixed;
+  top: 10vh;
+  left: 10%;
+  width: 80%;
+  z-index: 99999;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  padding: 3rem;
+  margin: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  dialog {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}
+</style>
