@@ -6,7 +6,7 @@
         <add-task
           :projects="projects"
           :users="users"
-          @add-task="listenToEmit"
+          :reports="reports"
         />
       </dialog>
     </section>
@@ -27,7 +27,8 @@ export default {
   data () {
     return {
       projects: [],
-      users: []
+      users: [],
+      reports: []
     }
   },
   computed: mapGetters({
@@ -36,17 +37,15 @@ export default {
   }),
   mounted () {
     this.getAllProjects()
-    this.getAllUsers()
   },
   methods: {
     getAllProjects () {
-      axios.get('/api/projects').then(res => (this.projects = res.data))
-    },
-    getAllUsers () {
-      axios.get('/api/users').then(res => (this.users = res.data))
-    },
-    listenToEmit () {
-      this.getAllList()
+      axios.get('/api/reports').then(res => {
+        console.log(res.data)
+        this.projects = res.data.projects
+        this.users = res.data.users
+        this.reports = res.data.reports
+      })
     }
   }
 }

@@ -33,11 +33,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('settings/profile', [ProfileController::class, 'update']);
     Route::patch('settings/password', [PasswordController::class, 'update']);
     // custom routes
-    Route::get('/reports/{id}', [ReportController::class,'index']);
+    Route::get('/reports', [ReportController::class,'index']);
     Route::post('/reports', [ReportController::class,'store']);
 
     Route::get('reports/{id}/tasks', [TaskController::class,'index']);
-    Route::post('reports/{id}/tasks', [TaskController::class,'store']);
+    Route::post('reports/tasks', [TaskController::class,'store']);
 
     Route::get('projects', [ProjectController::class,'index']);
     Route::get('users', [ControllersUserController::class,'index']);

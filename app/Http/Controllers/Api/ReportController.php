@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReportRequest;
+use App\Http\Resources\ProjectResource;
 use App\Http\Resources\ReportResource;
+use App\Http\Resources\UserResource;
+use App\Models\Project;
 use App\Models\Report;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -15,10 +19,18 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $projects = Report::where(["user_id" => $request->id])->get();
-        return ReportResource::collection($projects);
+
+        $projects = Project::all();
+        $users=User::all();
+        $reports=Report::where('status','1')->get();
+        return
+        [
+            'projects' => ProjectResource::collection($projects),
+            'users' => UserResource::collection($users),
+            'reports' => ReportResource::collection($reports)
+        ];
     }
 
     /**

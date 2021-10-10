@@ -11,17 +11,13 @@ class Task extends Model
     protected $fillable = [
         'title',
         'project_name',
-        'role',
         'report_id',
         'who_is_assign',
         'description',
-        'current_date',
         'difficulties',
         'hours',
         'minutes',
         'user_id',
-        'updated_at',
-
     ];
     // protected $hidden = [
     //     'created_at',

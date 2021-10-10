@@ -11,15 +11,14 @@ class Report extends Model
     protected $fillable = [
         'id',
         'title',
-        'current_date',
-        'user_id',
+        'status',
     ];
     // protected $hidden = [
     //     'created_at',
     //     'updated_at',
     // ];
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 }

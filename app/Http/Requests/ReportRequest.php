@@ -24,19 +24,17 @@ class ReportRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:255|min:3',
-            'current_date' => 'required|date',
-            'user_id' => 'required|exists:users,id',
+            'title' => 'required|string|min:5|max:255|in:1',
         ];
     }
     public function messages()
     {
         return [
-            'required' => 'This field is required',
-            'string' => 'This field must be string',
-            'max' => 'Maximum character must be less than 256',
-            'min' => 'min character must be greater than 3',
-            'exists' => 'Invalid user id',
+            'title.required' => 'The Title is required',
+            'title.string' => 'This title must be string',
+            'title.min' => 'The minimun character is 5',
+            'title.max' => 'The maximum character is 255',
+            'title.in' => 'Sorry!.., You can\'t acess this report',
         ];
     }
 }

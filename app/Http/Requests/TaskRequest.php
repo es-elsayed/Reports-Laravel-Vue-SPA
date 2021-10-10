@@ -26,9 +26,9 @@ class TaskRequest extends FormRequest
         return [
             'title' => 'required',
             'project_name' => 'required|exists:projects,title',
-            'role' => 'required|exists:users,role',
             'report_id' => 'required|exists:reports,id',
             'who_is_assign' => 'required|exists:users,name',
+            // 'role' => 'required|exists:users,role',
             // 'current_date' => 'required|date',
             // 'hours' => 'required|integer|min:0',
             // 'minutes' => 'required|integer|min:0|max:59',
@@ -38,7 +38,7 @@ class TaskRequest extends FormRequest
     public function messages()
     {
         return [
-            'required'=> "this fiel is required",
+            'required'=> "this field is required",
             'date'=>'invalid date',
             'exists'=>'invalid Input data',
             'min'=>'the minimum number is: 0',

@@ -73,6 +73,34 @@
           </label>
         </div>
 
+        <div v-if="reports.length > 1" class="form-row mb-20">
+          <div class="col-sm-4">
+            <label for="report Name">Report Name</label>
+          </div>
+          <div class="col-sm-8">
+            <select
+              id="report_id"
+              v-model="report_id"
+              name="report_id"
+              class="form-select form-select-lg mb-3"
+              aria-label=".form-select-lg example"
+            >
+              <option>Choose Report Name</option>
+
+              <option
+                v-for="report in reports"
+                :key="report.id"
+                :value="report.id"
+              >
+                {{ report.title }}
+              </option>
+            </select>
+          </div>
+          <label v-if="!whoValidity" class="text-danger ms-5">
+            *Please Enter Valid Name!
+          </label>
+        </div>
+
         <div class="form-row mb-20">
           <div class="col-sm-4">
             <label for="description">Description</label>
@@ -190,15 +218,17 @@ import axios from 'axios'
 import { mapGetters } from 'vuex'
 
 export default {
-  props: ['projects', 'users'],
-  emits: ['toggle-add-list', 'add-task', 'close'],
+  props: ['projects', 'users', 'reports'],
+  emits: ['close'],
   data () {
     return {
       taskNameValidity: true,
       projectNameValidity: true,
       whoValidity: true,
       taskName: '',
+      report_id: null,
       projectName: 'Choose Project Name',
+      reportName: 'Choose Report Name',
       whoIsAssign: 'Choose Who is Assign',
       description: null,
       difficulties: null,
@@ -260,10 +290,10 @@ export default {
         return console.log('اكبر بقا وبطل لعب')
       }
       axios
-        .post(`/api/reports/${this.$route.params.id}/tasks`, {
+        .post('/api/reports/tasks', {
           title: this.taskName,
           project_name: this.projectName,
-          report_id: this.$route.params.id,
+          report_id: this.report_id,
           who_is_assign: this.whoIsAssign,
           description: this.description,
           difficulties: this.difficulties,
@@ -279,7 +309,7 @@ export default {
       this.difficulties = null
       this.hours = 0
       this.minutes = 0
-      this.$emit('add-task')
+      // this.$emit('add-task')
     },
     GoBack () {
       this.$router.back()

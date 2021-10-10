@@ -16,8 +16,7 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->string('title', 255);
-            $table->integer('user_id');
-            $table->timestamp('current_date');
+            $table->enum('status',['0','1'])->default('1');
             $table->timestamps();
         });
     }
