@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReportRequest;
 use App\Http\Requests\TaskRequest;
 use App\Http\Resources\TaskResource;
+use App\Models\Report;
 use App\Models\Task;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -41,6 +44,26 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request)
     {
+        if ($request->report_id == null) {
+            $lastReport = Report::where('status', '1')->get();
+            if (sizeof($lastReport) == 1) {
+                $lastReportId = $lastReport[0]->id;
+                $task =  Task::create([
+                    'title' => $request->title,
+                    'project_name' => $request->project_name,
+                    'report_id' => $lastReportId,
+                    'who_is_assign' => $request->who_is_assign,
+                    'description' => $request->description,
+                    'difficulties' => $request->difficulties,
+                    'hours' => $request->hours,
+                    'minutes' => $request->minutes,
+                    'user_id' => $request->user_id,
+                ]);
+                return new TaskResource($task);
+            } else {
+                return 'ReportId cannot be null, please try again later';
+            }
+        };
         try {
             $task =  Task::create([
                 'title' => $request->title,

@@ -85,8 +85,6 @@
               class="form-select form-select-lg mb-3"
               aria-label=".form-select-lg example"
             >
-              <option>Choose Report Name</option>
-
               <option
                 v-for="report in reports"
                 :key="report.id"
@@ -302,9 +300,10 @@ export default {
           user_id: this.user.id
         })
         .then(res => console.log(res.data.data))
-      this.taskName = null
-      this.projectName = null
-      this.whoIsAssign = null
+      this.reportName = 'Choose Report Name'
+      this.taskName = ''
+      this.projectName = 'Choose Project Name'
+      this.whoIsAssign = 'Choose Who is Assign'
       this.description = null
       this.difficulties = null
       this.hours = 0

@@ -26,7 +26,7 @@ class TaskRequest extends FormRequest
         return [
             'title' => 'required',
             'project_name' => 'required|exists:projects,title',
-            'report_id' => 'required|exists:reports,id',
+            // 'report_id' => 'required|exists:reports,id',
             'who_is_assign' => 'required|exists:users,name',
             // 'role' => 'required|exists:users,role',
             // 'current_date' => 'required|date',
