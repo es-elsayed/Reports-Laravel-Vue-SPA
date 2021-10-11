@@ -19,49 +19,65 @@
           <task-card v-for="task in tasks" :key="task.id" :task="task" />
         </tbody>
       </table>
-      <!-- <div class="board-wrapper">
-        <div class="board w-100">
-          <div class="add-card add-another-list" style="">
-            <h4 class="c4 text-center" @click="toggleAdd">
-              Add another list
-            </h4>
-            <section>
-              <div v-if="!toggleAddBoard" class="blur" @click="toggleAdd" />
-              <dialog v-if="!toggleAddBoard" open>
-                <add-task
-                  :projects="projects"
-                  :users="users"
-                  @add-task="listenToEmit"
-                  @close="toggleAdd"
-                />
-              </dialog>
-            </section>
-            <base-dialog @close="hi" v-if="!toggleAddBoard" />
-          </div>
-        </div>
-      </div> -->
     </div>
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item" :class="{ disabled: current_page <= 1 }">
+          <button
+            type="button"
+            :disabled="current_page <= 1"
+            class="page-link"
+            @click="list(--current_page)"
+          >
+            Previous
+          </button>
+        </li>
+        <!-- <li class="page-item">
+          <button type="button"  class="page-link">
+            1
+          </button>
+        </li>
+        <li class="page-item active" aria-current="page">
+          <button type="button" class="page-link">
+            2
+          </button>
+        </li>
+        <li class="page-item">
+          <button type="button" class="page-link">
+            3
+          </button>
+        </li> -->
+        <li class="page-item" :class="{ disabled: current_page >= last_page }">
+          <button
+            type="button"
+            :disabled="current_page >= last_page"
+            class="page-link"
+            @click="list(++current_page)"
+          >
+            Next
+          </button>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
 import axios from 'axios'
-// import AddTask from '../../components/Task/AddTask.vue'
 import TaskCard from '../../components/Task/TaskCard.vue'
-// import BaseDialog from '../../components/UI/BaseDialog.vue'
+// import pagination from 'laravel-vue-pagination'
+// import Button from '../../components/Button.vue'
+
 export default {
   components: {
-    // AddTask,
     TaskCard
-    // BaseDialog
+    // pagination
   },
   data () {
     return {
-      // toggleAddBoard: true,
-      // toggleAddBoard: false,
+      current_page: 1,
+      last_page: 1,
       tasks: []
-      // projects: [],
-      // users: []
     }
   },
   computed: mapGetters({
@@ -77,8 +93,22 @@ export default {
     getAllList () {
       axios.get('/api/reports/tasks').then(res => {
         this.tasks = res.data.data
-        console.log(res.data.data)
+        this.current_page = res.data.meta.current_page
+        this.last_page = res.data.meta.last_page
       })
+    },
+    async list (page) {
+      await axios
+        .get(`/api/reports/tasks?page=${page}`)
+        .then(res => {
+          this.tasks = res.data.data
+          // this.current_page = res.data.meta.current_page
+          // this.last_page = res.data.meta.last_page
+          console.log(res.data.meta)
+        })
+        .catch(({ response }) => {
+          console.error(response)
+        })
     }
   }
 }
@@ -107,28 +137,9 @@ dialog {
   margin: 0;
   overflow: hidden;
 }
-
-/* header {
-  background-color: #3a0061;
-  color: white;
-  width: 100%;
-  padding: 1rem;
+.pagination {
+  margin-bottom: 0;
 }
-
-header h2 {
-  margin: 0;
-}
-
-section {
-  padding: 1rem;
-}
-
-menu {
-  padding: 1rem;
-  display: flex;
-  justify-content: flex-end;
-  margin: 0;
-} */
 
 @media (min-width: 768px) {
   dialog {

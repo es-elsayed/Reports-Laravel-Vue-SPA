@@ -22,7 +22,7 @@ class TaskController extends Controller
     public function index()
     {
         // return '$request->id';
-        $tasks = Task::orderBy('created_at', 'DESC')->paginate('4');
+        $tasks = Task::orderBy('created_at', 'DESC')->paginate(10);
         return TaskResource::collection($tasks);
     }
 
