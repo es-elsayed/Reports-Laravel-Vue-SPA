@@ -19,10 +19,10 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        // return $request->id;
-        $tasks = Task::where(["report_id" => $request->id])->get();
+        // return '$request->id';
+        $tasks = Task::orderBy('created_at', 'DESC')->paginate('4');
         return TaskResource::collection($tasks);
     }
 

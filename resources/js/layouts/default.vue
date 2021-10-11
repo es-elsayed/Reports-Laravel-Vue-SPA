@@ -4,8 +4,8 @@
     <navbar />
 
     <div class="main-wrapper">
-      <sidebar v-if="user.role=='normal'" />
-      <admin-sidebar v-if="user.role=='admin'" />
+      <sidebar v-if="user" />
+      <!-- <admin-sidebar v-if="user.role=='admin'" /> -->
 
       <div class="main-content mt-4">
         <child />

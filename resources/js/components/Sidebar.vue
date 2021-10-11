@@ -15,7 +15,7 @@
       <!-- Nav -->
       <ul class="nav">
         <li>
-          <router-link link mode="flat" :to="{ name: 'reports' }">
+          <router-link link mode="flat" :to="{ name: role =='admin'? 'reports.list' : 'reports' }">
             <i class="icofont-calendar" />
             <span class="link-title">Reports</span>
           </router-link>
@@ -27,7 +27,12 @@
   </nav>
 </template>
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+export default {
+  computed: mapGetters({
+    role: 'auth/role'
+  })
+}
 </script>
 
 <style></style>

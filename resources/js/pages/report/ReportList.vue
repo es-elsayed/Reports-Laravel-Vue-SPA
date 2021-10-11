@@ -7,6 +7,7 @@
             <th>Task Title</th>
             <th>Project Name</th>
             <th>Date</th>
+            <th>User Name</th>
             <th>Role</th>
             <th>Who is Assign</th>
             <th>Description</th>
@@ -56,7 +57,7 @@ export default {
   },
   data () {
     return {
-      toggleAddBoard: true,
+      // toggleAddBoard: true,
       // toggleAddBoard: false,
       tasks: []
       // projects: [],
@@ -65,41 +66,19 @@ export default {
   },
   computed: mapGetters({
     user: 'auth/user',
-    role: 'auth/role',
-    token: 'auth/token'
+    role: 'auth/role'
   }),
   mounted () {
-    console.log(this.role)
+    // console.log(this.role)
     this.getAllList()
-    this.getAllProjects()
-    this.getAllUsers()
-  },
-  afterUpdated () {
-    this.getAllList()
-    console.log('hi')
+    console.log(this.tasks)
   },
   methods: {
-    hi () {
-      console.log('hi')
-    },
-    toggleAdd () {
-      this.toggleAddBoard = !this.toggleAddBoard
-    },
     getAllList () {
-      axios.get(`/api/reports/${this.$route.params.id}/tasks`).then(res => {
+      axios.get('/api/reports/tasks').then(res => {
         this.tasks = res.data.data
         console.log(res.data.data)
       })
-    },
-    getAllProjects () {
-      axios.get('/api/projects').then(res => (this.projects = res.data))
-    },
-    getAllUsers () {
-      axios.get('/api/users').then(res => (this.users = res.data))
-    },
-    listenToEmit () {
-      this.getAllList()
-      this.toggleAddBoard = true
     }
   }
 }

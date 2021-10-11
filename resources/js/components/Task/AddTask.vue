@@ -308,6 +308,7 @@ export default {
       this.difficulties = null
       this.hours = 0
       this.minutes = 0
+      this.GoBack()
       // this.$emit('add-task')
     },
     GoBack () {
