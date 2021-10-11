@@ -4,7 +4,8 @@
     <navbar />
 
     <div class="main-wrapper">
-      <sidebar v-if="user" />
+      <sidebar v-if="user.role=='normal'" />
+      <admin-sidebar v-if="user.role=='admin'" />
 
       <div class="main-content mt-4">
         <child />
@@ -25,17 +26,18 @@
 import { mapGetters } from 'vuex'
 import Navbar from '~/components/Navbar'
 import Sidebar from '~/components/Sidebar'
+import AdminSidebar from '~/components/AdminSidebar'
 // import ProjectCard from "~/components/Project/ProjectCard";
 export default {
-  computed: mapGetters({
-    user: 'auth/user'
-  }),
   name: 'MainLayout',
-
   components: {
     Navbar,
-    Sidebar
+    Sidebar,
+    AdminSidebar
     // ProjectCard,
-  }
+  },
+  computed: mapGetters({
+    user: 'auth/user'
+  })
 }
 </script>

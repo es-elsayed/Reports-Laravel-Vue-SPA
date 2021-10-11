@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('projects', [ProjectController::class,'index']);
     Route::get('users', [ControllersUserController::class,'index']);
+    Route::get('users/user', [ControllersUserController::class,'user']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

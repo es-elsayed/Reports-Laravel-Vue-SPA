@@ -18,7 +18,7 @@
           <task-card v-for="task in tasks" :key="task.id" :task="task" />
         </tbody>
       </table>
-      <div class="board-wrapper">
+      <!-- <div class="board-wrapper">
         <div class="board w-100">
           <div class="add-card add-another-list" style="">
             <h4 class="c4 text-center" @click="toggleAdd">
@@ -35,22 +35,22 @@
                 />
               </dialog>
             </section>
-            <!-- <base-dialog @close="hi" v-if="!toggleAddBoard" /> -->
+            <base-dialog @close="hi" v-if="!toggleAddBoard" />
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
 import axios from 'axios'
-import AddTask from '../../components/Task/AddTask.vue'
+// import AddTask from '../../components/Task/AddTask.vue'
 import TaskCard from '../../components/Task/TaskCard.vue'
 // import BaseDialog from '../../components/UI/BaseDialog.vue'
 export default {
   components: {
-    AddTask,
+    // AddTask,
     TaskCard
     // BaseDialog
   },
@@ -58,16 +58,18 @@ export default {
     return {
       toggleAddBoard: true,
       // toggleAddBoard: false,
-      tasks: [],
-      projects: [],
-      users: []
+      tasks: []
+      // projects: [],
+      // users: []
     }
   },
   computed: mapGetters({
     user: 'auth/user',
+    role: 'auth/role',
     token: 'auth/token'
   }),
   mounted () {
+    console.log(this.role)
     this.getAllList()
     this.getAllProjects()
     this.getAllUsers()

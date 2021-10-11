@@ -1,10 +1,10 @@
+import store from '../store/index.js'
 function page (path) {
   return () =>
     import(/* webpackChunkName: '' */ `~/pages/${path}`).then(
       m => m.default || m
     )
 }
-
 export default [
   { path: '/', name: 'welcome', component: page('welcome.vue') },
 
@@ -16,9 +16,13 @@ export default [
     component: page('report/TheReports.vue')
   },
   {
-    path: '/report/:id/list',
-    name: 'report.lists',
-    params: true,
+    path: '/reports/list',
+    name: 'reports.list',
+    beforeEnter: (to, from, next) => {
+      if (store.state.auth.role === 'admin') {
+        return next()
+      } else return next('/home')
+    },
     component: page('report/ReportList.vue')
   },
 

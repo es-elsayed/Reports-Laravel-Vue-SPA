@@ -5,12 +5,14 @@ import * as types from '../mutation-types'
 // state
 export const state = {
   user: null,
+  role: null,
   token: Cookies.get('token')
 }
 
 // getters
 export const getters = {
   user: state => state.user,
+  role: state => state.role,
   token: state => state.token,
   check: state => state.user !== null
 }
@@ -24,6 +26,7 @@ export const mutations = {
 
   [types.FETCH_USER_SUCCESS] (state, { user }) {
     state.user = user
+    state.role = user.role
   },
 
   [types.FETCH_USER_FAILURE] (state) {
@@ -33,6 +36,7 @@ export const mutations = {
 
   [types.LOGOUT] (state) {
     state.user = null
+    state.role = null
     state.token = null
 
     Cookies.remove('token')
