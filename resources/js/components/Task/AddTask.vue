@@ -309,6 +309,7 @@ export default {
       this.hours = 0
       this.minutes = 0
       this.GoBack()
+      this.$swal('Report Added Successfully!!!')
       // this.$emit('add-task')
     },
     GoBack () {

@@ -4,6 +4,10 @@ import router from '~/router'
 import i18n from '~/plugins/i18n'
 import App from '~/components/App'
 
+// Sweet alert
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
+
 import '~/plugins'
 import '~/components'
 import moment from 'moment'
@@ -22,3 +26,4 @@ new Vue({
   router,
   ...App
 })
+Vue.use(VueSweetalert2)
