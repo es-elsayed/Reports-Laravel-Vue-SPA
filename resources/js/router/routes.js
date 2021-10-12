@@ -13,6 +13,11 @@ export default [
   {
     path: '/reports',
     name: 'reports',
+    beforeEnter: (to, from, next) => {
+      if (store.state.auth.role) {
+        return next()
+      } else return next('/home')
+    },
     component: page('report/TheReports.vue')
   },
   {
