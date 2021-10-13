@@ -1,5 +1,4 @@
-import store from '../store/index.js'
-function page (path) {
+function page(path) {
   return () =>
     import(/* webpackChunkName: '' */ `~/pages/${path}`).then(
       m => m.default || m
@@ -13,21 +12,11 @@ export default [
   {
     path: '/reports',
     name: 'reports',
-    beforeEnter: (to, from, next) => {
-      if (store.state.auth.role) {
-        return next()
-      } else return next('/home')
-    },
     component: page('report/TheReports.vue')
   },
   {
     path: '/reports/list',
     name: 'reports.list',
-    beforeEnter: (to, from, next) => {
-      if (store.state.auth.role === 'admin') {
-        return next()
-      } else return next('/home')
-    },
     component: page('report/ReportList.vue')
   },
 

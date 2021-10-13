@@ -73,6 +73,7 @@ export default {
     TaskCard
     // pagination
   },
+  middleware: 'admin',
   data () {
     return {
       current_page: 1,
@@ -84,20 +85,20 @@ export default {
     user: 'auth/user',
     role: 'auth/role'
   }),
-  mounted () {
+  mounted() {
     // console.log(this.role)
     this.getAllList()
     console.log(this.tasks)
   },
   methods: {
-    getAllList () {
+    getAllList() {
       axios.get('/api/reports/tasks').then(res => {
         this.tasks = res.data.data
         this.current_page = res.data.meta.current_page
         this.last_page = res.data.meta.last_page
       })
     },
-    async list (page) {
+    async list(page) {
       await axios
         .get(`/api/reports/tasks?page=${page}`)
         .then(res => {

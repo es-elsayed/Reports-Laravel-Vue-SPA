@@ -3,11 +3,7 @@
     <section>
       <div class="blur" @click="$router.back()" />
       <dialog open>
-        <add-task
-          :projects="projects"
-          :users="users"
-          :reports="reports"
-        />
+        <add-task :projects="projects" :users="users" :reports="reports" />
       </dialog>
     </section>
   </div>
@@ -21,10 +17,8 @@ export default {
   components: {
     AddTask
   },
-  // beforeRouteEnter (to, from, next) {
-  //   console.log(this.user);
-  // },
-  data () {
+  middleware: 'auth',
+  data() {
     return {
       projects: [],
       users: [],
@@ -35,11 +29,11 @@ export default {
     user: 'auth/user',
     token: 'auth/token'
   }),
-  mounted () {
+  mounted() {
     this.getAllProjects()
   },
   methods: {
-    getAllProjects () {
+    getAllProjects() {
       axios.get('/api/reports').then(res => {
         console.log(res.data)
         this.projects = res.data.projects
