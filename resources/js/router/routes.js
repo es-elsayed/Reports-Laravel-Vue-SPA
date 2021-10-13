@@ -33,7 +33,7 @@ export default [
 
   // end of my custom route
   { path: '/login', name: 'login', component: page('auth/login.vue') },
-  { path: '/register', name: 'register', component: page('auth/register.vue') },
+  // { path: '/register', name: 'register', component: page('auth/register.vue') },
   {
     path: '/password/reset',
     name: 'password.request',

@@ -7,7 +7,8 @@
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label text-md-end">{{ $t('name') }}</label>
         <div class="col-md-7">
-          <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
+          <!-- <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name"> -->
+          <input v-model="form.name" class="form-control" type="text" disabled>
           <has-error :form="form" field="name" />
         </div>
       </div>
@@ -16,19 +17,20 @@
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label text-md-end">{{ $t('email') }}</label>
         <div class="col-md-7">
-          <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
+          <!-- <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email"> -->
+          <input v-model="form.email" class="form-control" type="text" disabled>
           <has-error :form="form" field="email" />
         </div>
       </div>
 
       <!-- Submit Button -->
-      <div class="mb-3 row">
+      <!-- <div class="mb-3 row">
         <div class="col-md-9 ms-md-auto">
           <v-button :loading="form.busy" type="success">
             {{ $t('update') }}
           </v-button>
         </div>
-      </div>
+      </div> -->
     </form>
   </card>
 </template>
@@ -60,14 +62,14 @@ export default {
     this.form.keys().forEach(key => {
       this.form[key] = this.user[key]
     })
-  },
-
-  methods: {
-    async update () {
-      const { data } = await this.form.patch('/api/settings/profile')
-
-      this.$store.dispatch('auth/updateUser', { user: data })
-    }
   }
+
+  //, methods: {
+  //   async update () {
+  //     const { data } = await this.form.patch('/api/settings/profile')
+
+  //     this.$store.dispatch('auth/updateUser', { user: data })
+  //   }
+  // }
 }
 </script>
