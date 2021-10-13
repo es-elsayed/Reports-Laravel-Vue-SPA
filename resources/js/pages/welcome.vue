@@ -25,9 +25,7 @@
       </div>
 
       <div class="links">
-        <a href="https://github.com/cretueusebiu/laravel-vue-spa"
-          >github.com/cretueusebiu/laravel-vue-spa</a
-        >
+        <a href="https://twision.agency/en">twision.agency</a>
       </div>
     </div>
   </div>
