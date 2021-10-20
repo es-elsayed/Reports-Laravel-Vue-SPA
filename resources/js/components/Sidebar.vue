@@ -34,5 +34,20 @@ export default {
   })
 }
 </script>
-
-<style></style>
+<style scoped>
+.sidebar {
+  top: 56px;
+  height: calc(100% - 56px);
+  overflow: scroll;
+}
+.sidebar-body li a {
+  color: #262626 !important;
+}
+.sidebar-body li:hover {
+  background: linear-gradient(45deg, #f6d51b, rgb(219, 218, 218));
+}
+.sidebar-body li ul li:hover {
+  background: #f6d51b;
+  color: red !important;
+}
+</style>

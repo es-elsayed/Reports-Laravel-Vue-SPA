@@ -1,215 +1,196 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <form @submit.prevent="addNewTask">
-        <div class=" form-row mb-20">
-          <div class="col-sm-4">
-            <label for="task_name">Task Name</label>
-          </div>
-          <div class="col-sm-8">
-            <input
-              id="task_name"
-              v-model.trim="taskName"
-              type="text"
-              name="task_name"
-              class="text-input theme-input-style style--seven"
-              placeholder="Task Name"
-              @blur="validateTaskName"
-            >
-          </div>
-          <label v-if="!taskNameValidity" class="text-danger ms-5">
-            *Please Enter Valid Name!
-          </label>
+  <div class="container-fluid">
+    <form @submit.prevent="addNewTask">
+      <div class="row my-5">
+        <h4 class="col-sm-4">
+          <label for="task_name">Task Name</label>
+        </h4>
+        <div class="col-sm-8">
+          <input
+            id="task_name"
+            v-model.trim="taskName"
+            type="text"
+            name="task_name"
+            class="text-input theme-input-style style--seven"
+            placeholder="Task Name"
+            @blur="validateTaskName"
+          >
         </div>
+        <label v-if="!taskNameValidity" class="text-danger ms-5">
+          *Please Enter Valid Name!
+        </label>
+      </div>
 
-        <div class=" form-row mb-20">
-          <div class="col-sm-4">
-            <label for="project_name">Project Name</label>
-          </div>
-          <div class="col-sm-8">
-            <select
-              id="project_name"
-              v-model="projectName"
-              name="project_name"
-              class="form-select form-select-lg mb-3"
-              aria-label=".form-select-lg example"
+      <div class="row">
+        <div class="col-xl-4 mb-20">
+          <label for="project_name" class="bold">Project Name</label>
+          <select
+            id="project_name"
+            v-model="projectName"
+            name="project_name"
+            class="form-select form-select-lg mb-3"
+            aria-label=".form-select-lg example"
+          >
+            <option>Choose Project Name</option>
+            <option
+              v-for="project in projects"
+              :key="project.id"
+              :value="project.title"
             >
-              <option>Choose Project Name</option>
-              <option
-                v-for="project in projects"
-                :key="project.id"
-                :value="project.title"
-              >
-                {{ project.title }}
-              </option>
-            </select>
-          </div>
+              {{ project.title }}
+            </option>
+          </select>
           <label v-if="!projectNameValidity" class="text-danger ms-5">
             *Please Enter Valid Name!
           </label>
         </div>
+        <div class="col-xl-4 mb-20">
+          <label for="who" class="bold">Who Is Assign</label>
+          <select
+            id="who"
+            v-model="whoIsAssign"
+            name="who"
+            class="form-select form-select-lg mb-3"
+            aria-label=".form-select-lg example"
+          >
+            <option>Choose Who is Assign</option>
 
-        <div class="form-row mb-20">
-          <div class="col-sm-4">
-            <label for="who">Who Is Assign</label>
-          </div>
-          <div class="col-sm-8">
-            <select
-              id="who"
-              v-model="whoIsAssign"
-              name="who"
-              class="form-select form-select-lg mb-3"
-              aria-label=".form-select-lg example"
-            >
-              <option>Choose Who is Assign</option>
-
-              <option v-for="user in users" :key="user.id" :value="user.name">
-                {{ user.name }}
-              </option>
-            </select>
-          </div>
+            <option v-for="user in users" :key="user.id" :value="user.name">
+              {{ user.name }}
+            </option>
+          </select>
           <label v-if="!whoValidity" class="text-danger ms-5">
             *Please Enter Valid Name!
           </label>
         </div>
+      </div>
 
-        <div v-if="reports.length > 1" class="form-row mb-20">
-          <div class="col-sm-4">
-            <label for="report Name">Report Name</label>
-          </div>
-          <div class="col-sm-8">
-            <select
-              id="report_id"
-              v-model="report_id"
-              name="report_id"
-              class="form-select form-select-lg mb-3"
-              aria-label=".form-select-lg example"
-            >
-              <option
-                v-for="report in reports"
-                :key="report.id"
-                :value="report.id"
-              >
-                {{ report.title }}
-              </option>
-            </select>
-          </div>
-          <label v-if="!whoValidity" class="text-danger ms-5">
-            *Please Enter Valid Name!
-          </label>
+      <!-- <div v-if="reports.length > 1" class="form-row mb-20">
+        <div class="col-sm-4">
+          <label for="report Name">Report Name</label>
         </div>
+        <div class="col-sm-8">
+          <select
+            id="report_id"
+            v-model="report_id"
+            name="report_id"
+            class="form-select form-select-lg mb-3"
+            aria-label=".form-select-lg example"
+          >
+            <option
+              v-for="report in reports"
+              :key="report.id"
+              :value="report.id"
+            >
+              {{ report.title }}
+            </option>
+          </select>
+        </div>
+        <label v-if="!whoValidity" class="text-danger ms-5">
+          *Please Enter Valid Name!
+        </label>
+      </div> -->
 
-        <div class="form-row mb-20">
-          <div class="col-sm-4">
+      <!-- description row -->
+      <div class="form-group mb-4">
+        <div class="col-sm-4">
+          <h4 class="font-20 mb-3">
             <label for="description">Description</label>
-          </div>
-          <div class="col-sm-8">
-            <textarea
-              id="description"
-              v-model="description"
-              name="description"
-              class="text-area theme-input-style style--seven"
-              placeholder="Type Here"
-            />
-          </div>
+          </h4>
         </div>
+        <textarea
+          id="description"
+          v-model="description"
+          name="description"
+          class="theme-input-style style--seven"
+          placeholder="Type Here"
+        />
+      </div>
 
-        <div class="form-row mb-20">
-          <div class="col-6 my-3">
-            <label for="demo0" class="control-label"> Hours </label>
-            <div class="input-group bootstrap-touchspin">
-              <span
-                class="input-group-btn input-group-prepend bootstrap-touchspin-injected"
-              ><button
-                class="btn btn-primary bootstrap-touchspin-down"
-                type="button"
-                @click="decrementHours"
-              >
-                -
-              </button></span><input
-                id="demo0"
-                v-model="hours"
-                type="text"
-                name="demo0"
-                class="form-control"
-              ><span
-                class="input-group-btn input-group-append bootstrap-touchspin-injected"
-              ><button
-                class="btn btn-primary bootstrap-touchspin-up"
-                type="button"
-                @click="incrementHours"
-              >
-                +
-              </button></span>
-            </div>
-          </div>
-          <div class="col-6 my-3">
-            <label for="demo0" class="control-label">Minutes </label>
-            <div class="input-group bootstrap-touchspin">
-              <span
-                class="input-group-btn input-group-prepend bootstrap-touchspin-injected"
-              ><button
-                class="btn btn-primary bootstrap-touchspin-down"
-                type="button"
-                @click="decrementMinutes"
-              >
-                -
-              </button></span><input
-                id="demo0"
-                v-model="minutes"
-                type="text"
-                name="demo0"
-                class="form-control"
-              ><span
-                class="input-group-btn input-group-append bootstrap-touchspin-injected"
-              ><button
-                class="btn btn-primary bootstrap-touchspin-up"
-                type="button"
-                @click="incrementMinutes"
-              >
-                +
-              </button></span>
+      <!-- time row -->
+      <div class="row mb-20">
+        <!-- Hours col -->
+        <div class="col-xl-4 my-3">
+          <div class="row">
+            <h4 class="col-4">
+              <label for="hours"> Hours </label>
+            </h4>
+            <div class="col-8">
+              <div class="input-group warning bootstrap-touchspin">
+                <span class="input-group-btn input-group-prepend"><button
+                  class="btn text-light"
+                  type="button"
+                  @click="decrementHours"
+                >
+                  -
+                </button></span><input
+                  id="hours"
+                  v-model="hours"
+                  type="text"
+                  name="hours"
+                  class="form-control"
+                ><span class="input-group-btn input-group-append"><button
+                  class="btn text-light"
+                  type="button"
+                  @click="incrementHours"
+                >
+                  +
+                </button></span>
+              </div>
             </div>
           </div>
         </div>
+        <!-- minutes col -->
+        <div class="col-xl-4 offset-xl-2 my-3">
+          <div class="row">
+            <h4 class="col-4">
+              <label for="minutes">Minutes </label>
+            </h4>
+            <div class="col-8">
+              <div class="input-group warning bootstrap-touchspin">
+                <span class="input-group-btn input-group-prepend"><button
+                  class="btn text-light"
+                  type="button"
+                  @click="decrementMinutes"
+                >
+                  -
+                </button></span><input
+                  id="minutes"
+                  v-model="minutes"
+                  type="text"
+                  name="minutes"
+                  class="form-control"
+                ><span class="input-group-btn input-group-append"><button
+                  class="btn text-light"
+                  type="button"
+                  @click="incrementMinutes"
+                >
+                  +
+                </button></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <div class="form-row mb-20">
-          <div class="col-sm-4">
-            <label for="difficulties">Difficulties Explanation</label>
-          </div>
-          <div class="col-sm-8">
-            <textarea
-              id="difficulties"
-              v-model="difficulties"
-              name="difficulties"
-              class="text-area theme-input-style style--seven"
-              placeholder="Type Here"
-            />
-          </div>
+      <div class="row text-center">
+        <!-- <div class="col">
+          <button
+            type="button"
+            class="btn btn-danger btn-action"
+            @click.stop="GoBack"
+          >
+            Back
+          </button>
+        </div> -->
+        <div class="col-2 my-5">
+          <button type="submit" class="btn btn-light px-5 py-3 submit">
+            Submit
+          </button>
         </div>
-
-        <div class="col">
-          <div class="row text-center">
-            <div class="col">
-              <button
-                type="button"
-                class="btn btn-danger btn-action"
-                @click.stop="GoBack"
-              >
-                Close
-              </button>
-            </div>
-            <div class="col">
-              <button type="submit" class="btn btn-primary btn-action">
-                Submit
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
-  <!-- -->
 </template>
 <script>
 import axios from 'axios'
@@ -318,17 +299,46 @@ export default {
   }
 }
 </script>
-<style>
-.text-area {
-  height: 100px !important;
+<style scoped>
+* {
+  color: #05374e;
 }
+
+select,
 input[type='text'],
 input[type='date'] {
-  padding: 1.5rem;
+  border-radius: 50px;
 }
-.btn-action {
-  padding-inline: 1.5rem;
-  padding-block: 0.75rem;
-  border-radius: 4px;
+
+textarea.theme-input-style.style--seven {
+  height: 17rem;
+}
+
+.input-group.bootstrap-touchspin button.btn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  top: 0px;
+}
+.input-group.bootstrap-touchspin .input-group-append button.btn {
+  left: -34px;
+}
+.input-group.bootstrap-touchspin .input-group-prepend button.btn {
+  left: 34px;
+}
+.input-group > .form-control:not(:first-child) {
+  /* background-color: red; */
+  text-align: center;
+}
+button.submit {
+  font-weight: bolder;
+  border-radius: 50px;
+}
+button.submit:hover {
+  background-color: rgb(255, 194, 81);
+  color: #fff;
+}
+button.btn.text-light {
+  z-index: 9;
 }
 </style>

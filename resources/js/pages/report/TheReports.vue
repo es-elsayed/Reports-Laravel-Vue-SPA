@@ -1,11 +1,13 @@
 <template>
   <div class="container-fluid">
-    <section>
-      <div class="blur" @click="$router.back()" />
-      <dialog open>
-        <add-task :projects="projects" :users="users" :reports="reports" />
-      </dialog>
-    </section>
+    <card title="Daily Report">
+      <add-task :projects="projects" :users="users" :reports="reports" />
+    </card>
+    <!-- <section> -->
+    <!-- <div class="blur" @click="$router.back()" />
+      <dialog open> -->
+    <!-- </dialog>
+    </section> -->
   </div>
 </template>
 <script>
@@ -17,8 +19,8 @@ export default {
   components: {
     AddTask
   },
-  middleware: 'auth',
-  data() {
+
+  data () {
     return {
       projects: [],
       users: [],
@@ -29,11 +31,11 @@ export default {
     user: 'auth/user',
     token: 'auth/token'
   }),
-  mounted() {
+  mounted () {
     this.getAllProjects()
   },
   methods: {
-    getAllProjects() {
+    getAllProjects () {
       axios.get('/api/reports').then(res => {
         console.log(res.data)
         this.projects = res.data.projects

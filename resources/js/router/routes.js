@@ -9,6 +9,7 @@ export default [
 
   // start of my custom route
   { path: '/about', name: 'about', component: page('about') },
+  { path: '/test', name: 'test', component: page('test') },
   {
     path: '/reports',
     name: 'reports',
