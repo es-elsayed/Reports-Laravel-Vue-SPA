@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container">
     <card title="Daily Report">
       <add-task :projects="projects" :users="users" :reports="reports" />
     </card>

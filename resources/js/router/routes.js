@@ -11,14 +11,27 @@ export default [
   { path: '/about', name: 'about', component: page('about') },
   { path: '/test', name: 'test', component: page('test') },
   {
-    path: '/reports',
-    name: 'reports',
+    path: '/reports/add',
+    name: 'reports.add',
     component: page('report/TheReports.vue')
   },
   {
-    path: '/reports/list',
-    name: 'reports.list',
-    component: page('report/ReportList.vue')
+    path: '/reports',
+    name: 'reports',
+    component: page('report/index.vue'),
+    children: [
+      { path: '', redirect: { name: 'reports.tasks' } },
+      {
+        path: 'tasks',
+        name: 'reports.tasks',
+        component: page('report/Projects.vue')
+      },
+      {
+        path: 'tasks/project/:id',
+        name: 'reports.tasks.project',
+        component: page('report/Users.vue')
+      }
+    ]
   },
 
   // end of my custom route

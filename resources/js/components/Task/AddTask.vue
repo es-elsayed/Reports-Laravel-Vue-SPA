@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <form @submit.prevent="addTask">
-      <div class="row my-5">
+      <div class="row mt-2 mb-4">
         <h4 class="col-sm-4">
           <label for="title">Task Name</label>
         </h4>
@@ -18,14 +18,14 @@
         <has-error :form="form" field="title" />
       </div>
 
-      <div class="row">
+      <div class="row my-2">
         <div class="col-xl mb-20">
           <label for="project_id" class="bold">Project Name</label>
           <select
             id="project_id"
             v-model="form.project_id"
             name="project_id"
-            class="form-select form-select-lg mb-3"
+            class="form-select form-select-lg mb-3 select-odd"
             :class="{ 'is-invalid': form.errors.has('project_id') }"
           >
             <option>Choose Project Name</option>
@@ -47,7 +47,7 @@
             id="who"
             v-model="form.who_is_assign"
             name="who_is_assign"
-            class="form-select form-select-lg mb-3"
+            class="form-select form-select-lg mb-3 select-even"
             :class="{ 'is-invalid': form.errors.has('who_is_assign') }"
           >
             <option>Choose Who is Assign</option>
@@ -63,7 +63,7 @@
             id="report_id"
             v-model="form.report_id"
             name="report_id"
-            class="form-select form-select-lg mb-3"
+            class="form-select form-select-lg mb-3 select-odd"
             :class="{ 'is-invalid': form.errors.has('who_is_assign') }"
           >
             <option>Choose Report Name</option>
@@ -81,7 +81,7 @@
       </div>
 
       <!-- description row -->
-      <div class="form-group mb-4">
+      <div class="form-group my-2">
         <div class="col-sm-4">
           <h4 class="font-20 mb-3">
             <label for="description">Description</label>
@@ -98,7 +98,7 @@
       </div>
 
       <!-- time row -->
-      <div class="row mb-20">
+      <div class="row my-2">
         <!-- Hours col -->
         <div class="col-xl-4 my-3">
           <div class="row">
@@ -168,7 +168,7 @@
         </h5>
       </div>
 
-      <div class="row text-center">
+      <div class="row my-2 text-center">
         <!-- <div class="col">
           <button
             type="button"
@@ -344,13 +344,27 @@ textarea.theme-input-style.style--seven {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  top: 0px;
+  top: -2px;
+  background-color: #043047;
+
+}
+.select-even {
+  background-color: #fdc106;
+  color: #262626;
+}
+.select-odd {
+  background-color: #262626;
+  color: #fdc106;
 }
 .input-group.bootstrap-touchspin .input-group-append button.btn {
-  left: -34px;
+  left: -27px;
+  background-color: #262626;
+  color: #fdc106;
 }
 .input-group.bootstrap-touchspin .input-group-prepend button.btn {
-  left: 34px;
+  left: 27px;
+  background-color: #fdc106;
+  color: #262626;
 }
 .input-group > .form-control:not(:first-child) {
   /* background-color: red; */

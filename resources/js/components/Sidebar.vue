@@ -15,7 +15,7 @@
       <!-- Nav -->
       <ul class="nav">
         <li>
-          <router-link link mode="flat" :to="{ name: role =='admin'? 'reports.list' : 'reports' }">
+          <router-link link mode="flat" :to="{ name: role =='admin'? 'reports.tasks' : 'reports.add' }">
             <i class="icofont-calendar" />
             <span class="link-title">Reports</span>
           </router-link>

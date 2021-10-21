@@ -1,8 +1,8 @@
 <template>
   <div class="card">
-    <div v-if="title" class="card-header">
+    <h3 v-if="title" class="card-header">
       {{ title }}
-    </div>
+    </h3>
 
     <div class="card-body">
       <slot />
@@ -19,3 +19,21 @@ export default {
   }
 }
 </script>
+<style scoped>
+:root {
+  --main-color: #fdc106;
+  --sub-color: #262626;
+}
+h3.card-header {
+  border-radius: 20px 20px 0px 0px;
+    color: #fdc106;
+    font-weight: bold;
+    text-align: center;
+  background-color: #262626;
+}
+div.card-body {
+  font-weight: bold;
+  background-color: #f7f9fb;
+}
+
+</style>

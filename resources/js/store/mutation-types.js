@@ -10,3 +10,7 @@ export const UPDATE_USER = 'UPDATE_USER'
 export const SET_LOCALE = 'SET_LOCALE'
 export const FETCH_REPORTS = 'FETCH_REPORTS'
 export const FETCH_REPORT = 'FETCH_REPORT'
+
+// custom
+export const FETCH_PROJECTS = 'FETCH_PROJECTS'
+export const FETCH_PROJECT = 'FETCH_PROJECT'
