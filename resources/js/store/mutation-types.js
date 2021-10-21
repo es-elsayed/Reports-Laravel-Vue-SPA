@@ -8,3 +8,5 @@ export const UPDATE_USER = 'UPDATE_USER'
 
 // lang.js
 export const SET_LOCALE = 'SET_LOCALE'
+export const FETCH_REPORTS = 'FETCH_REPORTS'
+export const FETCH_REPORT = 'FETCH_REPORT'

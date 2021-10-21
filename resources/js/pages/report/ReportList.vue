@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row overflow-auto">
       <table v-if="tasks.length > 0" class="dh-table">
         <thead class="text_color-bg text-white">
           <tr>
@@ -11,8 +11,8 @@
             <th>Role</th>
             <th>Who is Assign</th>
             <th>Description</th>
+
             <th>Time</th>
-            <th>Difficulties</th>
           </tr>
         </thead>
         <tbody>
@@ -32,21 +32,6 @@
             Previous
           </button>
         </li>
-        <!-- <li class="page-item">
-          <button type="button"  class="page-link">
-            1
-          </button>
-        </li>
-        <li class="page-item active" aria-current="page">
-          <button type="button" class="page-link">
-            2
-          </button>
-        </li>
-        <li class="page-item">
-          <button type="button" class="page-link">
-            3
-          </button>
-        </li> -->
         <li class="page-item" :class="{ disabled: current_page >= last_page }">
           <button
             type="button"
@@ -65,13 +50,10 @@
 import { mapGetters } from 'vuex'
 import axios from 'axios'
 import TaskCard from '../../components/Task/TaskCard.vue'
-// import pagination from 'laravel-vue-pagination'
-// import Button from '../../components/Button.vue'
 
 export default {
   components: {
     TaskCard
-    // pagination
   },
   middleware: 'admin',
   data () {
@@ -85,20 +67,21 @@ export default {
     user: 'auth/user',
     role: 'auth/role'
   }),
-  mounted() {
+  mounted () {
     // console.log(this.role)
     this.getAllList()
     console.log(this.tasks)
   },
   methods: {
-    getAllList() {
+    getAllList () {
       axios.get('/api/reports/tasks').then(res => {
         this.tasks = res.data.data
         this.current_page = res.data.meta.current_page
         this.last_page = res.data.meta.last_page
+        console.log(this.tasks)
       })
     },
-    async list(page) {
+    async list (page) {
       await axios
         .get(`/api/reports/tasks?page=${page}`)
         .then(res => {

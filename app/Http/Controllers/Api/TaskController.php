@@ -50,11 +50,10 @@ class TaskController extends Controller
                 $lastReportId = $lastReport[0]->id;
                 $task =  Task::create([
                     'title' => $request->title,
-                    'project_name' => $request->project_name,
+                    'project_id' => $request->project_id,
                     'report_id' => $lastReportId,
                     'who_is_assign' => $request->who_is_assign,
                     'description' => $request->description,
-                    'difficulties' => $request->difficulties,
                     'hours' => $request->hours,
                     'minutes' => $request->minutes,
                     'user_id' => $request->user_id,
@@ -67,11 +66,10 @@ class TaskController extends Controller
         try {
             $task =  Task::create([
                 'title' => $request->title,
-                'project_name' => $request->project_name,
+                'project_id' => $request->project_id,
                 'report_id' => $request->report_id,
                 'who_is_assign' => $request->who_is_assign,
                 'description' => $request->description,
-                'difficulties' => $request->difficulties,
                 'hours' => $request->hours,
                 'minutes' => $request->minutes,
                 'user_id' => $request->user_id,

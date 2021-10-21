@@ -25,22 +25,21 @@ class TaskRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'project_name' => 'required|exists:projects,title',
-            // 'report_id' => 'required|exists:reports,id',
-            'who_is_assign' => 'required|exists:users,name',
-            // 'role' => 'required|exists:users,role',
-            // 'current_date' => 'required|date',
-            // 'hours' => 'required|integer|min:0',
-            // 'minutes' => 'required|integer|min:0|max:59',
-            // 'user_id' => 'required|exists:users,id',
+            'project_id' => 'required|exists:projects,id',
+            'who_is_assign' => 'required|exists:users,id',
+            'description' => 'required',
+            'hours' => 'required|integer|min:0',
+            'minutes' => 'required|integer|min:0|max:59',
         ];
     }
     public function messages()
     {
         return [
-            'required'=> "this field is required",
-            'date'=>'invalid date',
-            'exists'=>'invalid Input data',
+            'required'=> "Sorry, this field cannot be empty !!",
+            'hours.required' => 'One of time field is required',
+            'minutes.required' => 'One of time field is required',
+            'who_is_assign.exists'=>"Choose Person Name",
+            'project_id.exists'=>"Choose Project Name",
             'min'=>'the minimum number is: 0',
             'max'=> 'the maximun number is 59'
         ];

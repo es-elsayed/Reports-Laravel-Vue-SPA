@@ -6,9 +6,12 @@
     <td>{{ task.user_name }}</td>
     <td>{{ task.role }}</td>
     <td>{{ task.who_is_assign }}</td>
-    <td class="special-width">{{ task.description }}</td>
+    <td>
+      <div class="special-width">
+        {{ task.description }}
+      </div>
+    </td>
     <td>{{ task.hours }}h : {{ task.minutes }}m</td>
-    <td class="special-width">{{ task.difficulties }}</td>
   </tr>
 </template>
 <script>
@@ -17,7 +20,9 @@ export default {
 }
 </script>
 <style scoped>
-.special-width{
-  width: 25%;
+.special-width {
+  width: 100%;
+  height: 100px;
+  overflow: auto;
 }
 </style>
