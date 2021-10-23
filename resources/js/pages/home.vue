@@ -1,7 +1,7 @@
 <template>
   <!-- start custom -->
   <card :title="$t('home')">
-    {{ $t("you_are_logged_in") }}
+    {{ $t('you_are_logged_in') }}
   </card>
 
   <!-- start default -->
@@ -16,19 +16,21 @@
 
 <script>
 // import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
-  middleware: "auth",
-
-  // async asyncData () {
-  //   const { data: projects } = await axios.get('/api/projects')
-
-  //   return {
-  //     projects
-  //   }
-  // },
-
-  metaInfo() {
-    return { title: this.$t("home") };
+  middleware: 'auth',
+  computed: mapGetters({
+    role: 'auth/role'
+  }),
+  metaInfo () {
+    return { title: this.$t('home') }
   },
-};
+  created () {
+    if (this.role === 'admin') {
+      this.$router.push({ name: 'reports' })
+    } else {
+      this.$router.push({ name: 'reports.add' })
+    }
+  }
+}
 </script>

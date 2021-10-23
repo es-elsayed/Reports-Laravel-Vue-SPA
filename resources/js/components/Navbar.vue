@@ -9,8 +9,8 @@
       </router-link>
       <div
         v-if="!toggleSidebar"
-        @click="showSidebar"
         class="offcanvas-overlay active"
+        @click="showSidebar"
       />
       <div class="main-header-left h-100 d-flex align-items-center bg-warning">
         <button
@@ -24,19 +24,15 @@
             <span class="bg-secondary" />
             <span class="bg-secondary" />
           </div>
-          <!-- <span class="navbar-toggler-icon" /> -->
         </button>
-        <button class="navbar-toggler" type="button" @click="showSidebar">
+        <!-- <button class="navbar-toggler" type="button" @click="showSidebar">
           <span class="navbar-toggler-icon" />
-        </button>
+        </button> -->
       </div>
 
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="navbar-nav">
           <locale-dropdown />
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li> -->
         </ul>
 
         <ul class="navbar-nav ms-auto">
@@ -53,7 +49,7 @@
               <img
                 :src="user.photo_url"
                 class="rounded-circle profile-photo me-1"
-              />
+              >
               {{ user.name }}
             </a>
             <div class="dropdown-menu">
@@ -83,17 +79,6 @@
                 {{ $t('login') }}
               </router-link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="https://twision.agency/en/about">
-                About
-              </a>
-            </li>
-
-            <!-- <li class="nav-item">
-              <router-link :to="{ name: 'register' }" class="nav-link" active-class="active">
-                {{ $t('register') }}
-              </router-link>
-            </li> -->
           </template>
         </ul>
       </div>

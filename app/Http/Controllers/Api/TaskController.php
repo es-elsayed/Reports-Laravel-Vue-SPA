@@ -88,7 +88,9 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        // return 'hi';
+        $tasks = Task::where('project_id', $id)->orderBy('created_at', 'DESC')->paginate(10);
+        return TaskResource::collection($tasks);
     }
 
     /**

@@ -14,12 +14,7 @@
     <div class="sidebar-body">
       <!-- Nav -->
       <ul class="nav">
-        <li>
-          <router-link link mode="flat" :to="{ name: role =='admin'? 'reports.tasks' : 'reports.add' }">
-            <i class="icofont-calendar" />
-            <span class="link-title">Reports</span>
-          </router-link>
-        </li>
+        <slot />
       </ul>
       <!-- End Nav -->
     </div>
@@ -29,6 +24,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  name: 'IndexSidebar',
   computed: mapGetters({
     role: 'auth/role'
   })

@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-lg-7 m-auto">
+    <div class="col-lg-7 mx-auto mt-5 pt-5">
       <card :title="$t('login')">
         <form @submit.prevent="login" @keydown="form.onKeydown($event)">
           <!-- Email -->

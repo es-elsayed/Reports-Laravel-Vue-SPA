@@ -1,35 +1,35 @@
-function page(path) {
+function page (path) {
   return () =>
     import(/* webpackChunkName: '' */ `~/pages/${path}`).then(
       m => m.default || m
     )
 }
 export default [
-  { path: '/', name: 'welcome', component: page('welcome.vue') },
+  { path: '/', name: 'welcome', redirect: { name: 'login' } },
 
   // start of my custom route
-  { path: '/about', name: 'about', component: page('about') },
-  { path: '/test', name: 'test', component: page('test') },
+  { path: '/admin', name: 'admin', component: page('Admin/index.vue') },
+
   {
     path: '/reports/add',
     name: 'reports.add',
-    component: page('report/TheReports.vue')
+    component: page('User/index.vue')
   },
   {
     path: '/reports',
     name: 'reports',
-    component: page('report/index.vue'),
+    component: page('Admin/index.vue'),
     children: [
       { path: '', redirect: { name: 'reports.tasks' } },
       {
         path: 'tasks',
         name: 'reports.tasks',
-        component: page('report/Projects.vue')
+        component: page('Admin/Projects.vue')
       },
       {
         path: 'tasks/project/:id',
         name: 'reports.tasks.project',
-        component: page('report/Users.vue')
+        component: page('Admin/ProjectReports.vue')
       }
     ]
   },
