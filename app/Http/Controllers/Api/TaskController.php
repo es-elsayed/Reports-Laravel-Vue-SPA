@@ -92,6 +92,12 @@ class TaskController extends Controller
         $tasks = Task::where('project_id', $id)->orderBy('created_at', 'DESC')->paginate(10);
         return TaskResource::collection($tasks);
     }
+    public function users($id)
+    {
+        // return 'hi';
+        $tasks = Task::where('user_id', $id)->orderBy('created_at', 'DESC')->paginate(10);
+        return TaskResource::collection($tasks);
+    }
 
     /**
      * Show the form for editing the specified resource.

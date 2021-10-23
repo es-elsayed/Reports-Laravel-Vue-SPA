@@ -12,6 +12,8 @@ export const FETCH_REPORTS = 'FETCH_REPORTS'
 export const FETCH_REPORT = 'FETCH_REPORT'
 
 // custom
+export const FETCH_USERS = 'FETCH_USERS'
+
 export const FETCH_PROJECTS = 'FETCH_PROJECTS'
 export const FETCH_PROJECT = 'FETCH_PROJECT'
 export const FETCH_TASKS = 'FETCH_TASKS'

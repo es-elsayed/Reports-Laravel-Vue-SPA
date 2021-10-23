@@ -41,8 +41,10 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('reports/tasks', [TaskController::class,'store']);
 
     Route::get('projects', [ProjectController::class,'index']);
+
     Route::get('users', [ControllersUserController::class,'index']);
     Route::get('users/user', [ControllersUserController::class,'user']);
+    Route::get('users/{id}/tasks', [TaskController::class,'users']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

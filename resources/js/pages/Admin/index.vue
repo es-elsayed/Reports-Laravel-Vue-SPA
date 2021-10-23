@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-content-center">
+  <!-- <div class="row justify-content-center">
     <div class="col-md-3 m-3">
       <card title="Our Projects" class="settings-card">
         <ul class="nav flex-column nav-pills">
@@ -21,6 +21,26 @@
       <transition name="fade" mode="out-in">
         <router-view />
       </transition>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-lg-7 mx-auto mt-5 pt-5">
+      <card title="Choose a View">
+        <div class="row">
+          <router-link
+            :to="{ name: 'reports.tasks' }"
+            class="col text-center py-3 text-warning text-decoration-none bg-dark"
+          >
+            Project
+          </router-link>
+          <router-link
+            :to="{ name: 'user.tasks' }"
+            class="col text-center py-3 text-dark text-decoration-none bg-warning"
+          >
+            Users
+          </router-link>
+        </div>
+      </card>
     </div>
   </div>
 </template>

@@ -8,7 +8,8 @@ export default [
   { path: '/', name: 'welcome', redirect: { name: 'login' } },
 
   // start of my custom route
-  { path: '/admin', name: 'admin', component: page('Admin/index.vue') },
+  { path: '/users', name: 'user.tasks', component: page('User/All.vue') },
+  { path: '/user/:id/tasks', name: 'user.id.tasks', component: page('User/All.vue') },
 
   {
     path: '/reports/add',
@@ -20,7 +21,7 @@ export default [
     name: 'reports',
     component: page('Admin/index.vue'),
     children: [
-      { path: '', redirect: { name: 'reports.tasks' } },
+      { path: '', redirect: { name: 'reports' } },
       {
         path: 'tasks',
         name: 'reports.tasks',

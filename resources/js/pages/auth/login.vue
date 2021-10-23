@@ -55,12 +55,12 @@
 <script>
 import Form from 'vform'
 import Cookies from 'js-cookie'
-import LoginWithGithub from '~/components/LoginWithGithub'
+// import LoginWithGithub from '~/components/LoginWithGithub'
 
 export default {
-  components: {
-    LoginWithGithub
-  },
+  // components: {
+  //   LoginWithGithub
+  // },
 
   middleware: 'guest',
 
