@@ -25,17 +25,17 @@
   </div> -->
   <div class="row">
     <div class="col-lg-7 mx-auto mt-5 pt-5">
-      <card title="Choose a View">
+      <card title="Choose a View" class="bg-transparent">
         <div class="row">
           <router-link
             :to="{ name: 'tasks.project' }"
-            class="col text-center py-3 text-decoration-none text-dark bg-secondary"
+            class="col text-center py-3 text-decoration-none bg-main text-sub scale-down"
           >
             Project
           </router-link>
           <router-link
             :to="{ name: 'tasks.user' }"
-            class="col text-center py-3 text-decoration-none main-background"
+            class="col text-center py-3 text-decoration-none text-main bg-sub scale-down"
           >
             Users
           </router-link>
@@ -47,6 +47,9 @@
 
 <script>
 export default {
-  middleware: 'admin'
-}
+  middleware: "admin"
+};
 </script>
+<style scoped>
+
+</style>

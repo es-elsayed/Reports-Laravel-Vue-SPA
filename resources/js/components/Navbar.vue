@@ -31,9 +31,9 @@
       </div>
 
       <div id="navbar" class="collapse navbar-collapse">
-        <ul class="navbar-nav">
+        <!-- <ul class="navbar-nav">
           <locale-dropdown />
-        </ul>
+        </ul> -->
 
         <ul class="navbar-nav ms-auto">
           <!-- Authenticated -->
