@@ -73,7 +73,10 @@
 *::after {
   outline: none !important;
 }
-
+:root {
+    --main-color: #415678;
+    --sub-color: #e2e2e2;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -12370,21 +12373,27 @@ select#locale {
   line-height: 1.733;
 }
 
-.main-background {
-    background-color: #415678;
-    color: #fff;
+.bg-main {
+    background-color: var(--main-color);
 }
-.main-background:hover {
+.text-main {
+    color: var(--main-color);
+}
+
+.text-sub {
+    color: var(--sub-color);
+}
+.bg-main.text-white a:hover{
+    color: var(--sub-color);
+}
+/*
+.bg-main:hover,
+.bg-second:hover {
     color: #aaa;
-}
-.main-color {
-    color: #415678;
-}
-.main-background a {
-    color: #fff;
-}
-.main-background a:hover {
-    color: #aaa;
+} */
+
+.bg-second {
+    background-color: var(--sub-color);
 }
 
 /*# sourceMappingURL=style.css.map */

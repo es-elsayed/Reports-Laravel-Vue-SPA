@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+  <nav class="navbar navbar-expand-lg bg-main text-white">
     <div class="container">
       <router-link
         :to="{ name: user ? 'home' : 'welcome' }"
@@ -12,7 +12,7 @@
         class="offcanvas-overlay active"
         @click="showSidebar"
       />
-      <div class="main-header-left h-100 d-flex align-items-center bg-warning">
+      <div class="main-header-left h-100 d-flex align-items-center bg-transparent">
         <button
           class="navbar-toggler border-0"
           type="button"

@@ -20,20 +20,23 @@ export default {
 }
 </script>
 <style scoped>
-:root {
-  --main-color: #fdc106;
-  --sub-color: #262626;
+div.card {
+  border-radius: 25px !important;
 }
 h3.card-header {
   border-radius: 20px 20px 0px 0px;
-    color: #fdc106;
+    color: var(--main-color);
     font-weight: bold;
     text-align: center;
-  background-color: #262626;
+  background-color: var(--sub-color);
 }
 div.card-body {
   font-weight: bold;
   background-color: #f7f9fb;
+}
+
+div.card-body input[type='email'],div.card-body input[type='password']{
+  border: 1px solid var(--sub-color) !important;
 }
 
 </style>

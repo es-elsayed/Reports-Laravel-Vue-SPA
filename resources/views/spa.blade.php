@@ -13,12 +13,12 @@ $appCss = mix('dist/css/app.css');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <link rel="shortcut icon" type="image/svg" href="https://twision.dev/images/Logow.svg"/>
   <title>{{ config('app.name') }}</title>
 
   <link rel="stylesheet" href="{{ (str_starts_with($appCss, '//') ? 'http:' : '').$appCss }}">
 </head>
-<body>
+<body class="bg-main">
   <div id="app"></div>
 
   <script>
