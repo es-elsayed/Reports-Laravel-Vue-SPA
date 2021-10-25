@@ -1,26 +1,43 @@
 <template>
-  <!-- :to="{ name: 'user.id.tasks', params: { id: user.id } }" -->
-  <router-link :to="{ name: 'tasks.users.id',params:{id:user.id} }" class="col-sm-6 col-md-4 col-xl-3 mb-3">
-    <div class="col card">
-      <div class="row my-3 justify-content-center">
-        <div
-          class="col-12 img"
-          :style="'background-image:url(https://picsum.photos/200/300);'"
-        />
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <h5 class="time-text">Today</h5>
-          <div class="time">06:30</div>
+  <router-link
+    :to="{ name: 'user.id.tasks', params: { id: user.id } }"
+    class="col-md-3 mb-3"
+  >
+    <div
+      class="card text-white card-has-bg click-col"
+      :style="'background-image:url(' + user.photo_url + ');'"
+    >
+      <!-- <img
+        class="card-img d-none"
+        :src="user.photo_url"
+        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?"
+      > -->
+      <div class="card-img-overlay d-flex flex-column">
+        <div class="card-body">
+          <h6 class="text-warning text-uppercase mb-2">
+            {{ user.role }}
+          </h6>
+          <!-- <h4 class="card-title mt-0 ">
+            <a class="text-white" herf="#">Goverment Lorem Ipsum Sit Amet Consectetur dipisi?</a>
+          </h4> -->
+          <small><i class="far fa-clock" /> October 15, 2020</small>
         </div>
-        <div class="col">
-          <h5 class="time-text">Today</h5>
-          <div class="time">06:30</div>
+        <div class="card-footer">
+          <div class="media">
+            <!-- <img
+              class="mr-3 rounded-circle"
+              src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png"
+              alt="Generic placeholder image"
+              style="max-width:50px"
+            > -->
+            <div class="media-body">
+              <h4 class="my-0 text-white d-block text-center">
+                {{ user.name }}
+              </h4>
+              <!-- <small>Director of UI/UX</small> -->
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="row mb-3">
-        <h3 class="col-12 text-center text-main">{{ user.name }}</h3>
-        <h5 class="col-12 text-center text-main te">{{ user.role }}</h5>
       </div>
     </div>
   </router-link>
@@ -32,43 +49,15 @@ export default {
 </script>
 
 <style scoped>
-a {
-  text-decoration: none;
-}
 .card {
-  background-color: var(--third-color);
   border: none;
   transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
   overflow: hidden;
   border-radius: 20px;
   min-height: 22rem;
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
-  transition-duration: 0.5s;
 }
-.card:hover {
-  transform: scale(0.99);
-  box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.3);
-}
-.img {
-  width: 8rem;
-  height: 8rem;
-  border-radius: 50% !important;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 120%;
-}
-div.time {
-  border: 1px solid var(--main-color);
-  text-align: center;
-  color: var(--main-color);
-  border-radius: 4px;
-  padding: 0.25rem 1rem;
-}
-h5 {
-  font-weight: 200;
-  text-align: center;
-}
-/*.card.card-has-bg {
+.card.card-has-bg {
   transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
   background-size: 120%;
   background-repeat: no-repeat;
@@ -114,6 +103,7 @@ h5 {
   transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 .card:hover .card-body {
+  /* margin-top: 30px; */
   transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 .card .card-img-overlay {
@@ -124,5 +114,5 @@ h5 {
     rgba(35, 79, 109, 0.3785889356) 0%,
     #455f71 100%
   );
-} */
+}
 </style>

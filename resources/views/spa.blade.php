@@ -18,7 +18,7 @@ $appCss = mix('dist/css/app.css');
 
   <link rel="stylesheet" href="{{ (str_starts_with($appCss, '//') ? 'http:' : '').$appCss }}">
 </head>
-<body class="bg-third">
+<body class="bg-sub">
   <div id="app"></div>
 
   <script>

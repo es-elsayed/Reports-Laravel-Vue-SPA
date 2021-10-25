@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-main text-white">
+  <nav v-if="user" class="navbar navbar-expand-lg bg-main text-white">
     <div class="container">
       <router-link
         :to="{ name: user ? 'home' : 'welcome' }"
@@ -12,7 +12,9 @@
         class="offcanvas-overlay active"
         @click="showSidebar"
       />
-      <div class="main-header-left h-100 d-flex align-items-center bg-transparent">
+      <div
+        class="main-header-left h-100 d-flex align-items-center bg-transparent"
+      >
         <button
           class="navbar-toggler border-0"
           type="button"
@@ -49,7 +51,7 @@
               <img
                 :src="user.photo_url"
                 class="rounded-circle profile-photo me-1"
-              >
+              />
               {{ user.name }}
             </a>
             <div class="dropdown-menu">
@@ -88,12 +90,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import LocaleDropdown from './LocaleDropdown'
+// import LocaleDropdown from './LocaleDropdown'
 
 export default {
-  components: {
-    LocaleDropdown
-  },
+  // components: {
+  //   LocaleDropdown
+  // },
+  middleware: 'auth',
 
   data: () => ({
     appName: window.config.appName,
@@ -108,14 +111,14 @@ export default {
   }),
 
   methods: {
-    async logout () {
+    async logout() {
       // Log out the user.
       await this.$store.dispatch('auth/logout')
 
       // Redirect to login.
       this.$router.push({ name: 'login' })
     },
-    showSidebar () {
+    showSidebar() {
       if (this.toggleSidebar) {
         document.body.classList.add('sidebar-open')
         this.toggleSidebar = !this.toggleSidebar

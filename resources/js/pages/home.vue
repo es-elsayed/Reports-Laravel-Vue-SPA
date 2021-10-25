@@ -27,7 +27,7 @@ export default {
   },
   created () {
     if (this.role === 'admin') {
-      this.$router.push({ name: 'reports' })
+      this.$router.push({ name: 'users' })
     } else {
       this.$router.push({ name: 'reports.add' })
     }

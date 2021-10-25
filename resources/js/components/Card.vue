@@ -21,7 +21,7 @@ export default {
 </script>
 <style scoped>
 div.card {
-  border-radius: 25px 25px 0 0 !important;
+  border-radius: 25px !important;
 }
 h3.card-header {
   border-radius: 20px 20px 0px 0px;
@@ -32,13 +32,10 @@ h3.card-header {
 }
 div.card-body {
   font-weight: bold;
-  /* background-color: #f7f9fb; */
   padding: 1rem 0.75rem 5px;
 }
 
 div.card-body input[type='email'],div.card-body input[type='password']{
   border: 1px solid var(--sub-color) !important;
 }
-/* .card-body {
-} */
 </style>

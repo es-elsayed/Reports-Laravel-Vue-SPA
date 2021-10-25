@@ -76,7 +76,8 @@
 :root {
     --main-color: #415678;
     --sub-color: #fff;
-    --third-color: #ddd;
+    --second-color: #e4e7ea;
+    --third-color: #eaeff4;
     --main-scale: .95;
 }
 input::-webkit-outer-spin-button,

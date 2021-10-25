@@ -1,6 +1,6 @@
 <template>
   <div v-if="path" class="container">
-    <card title="Daily Report">
+    <card title="Our Projects">
       <div class="row">
         <project-card
           v-for="project in projects"

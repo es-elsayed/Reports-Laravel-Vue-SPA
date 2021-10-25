@@ -1,44 +1,77 @@
 <template>
-  <div class="row">
-    <div class="col-lg-7 mx-auto mt-5 pt-5">
-      <card :title="$t('login')">
+  <div class="row center-card">
+    <div class="body"></div>
+    <card class=" w-50 py-5 px-3">
+      <div class="col text-center mb-3">
+        <fa class="user-icon" icon="user" />
+      </div>
+      <div class="col-lg mx-auto mt-3">
         <form @submit.prevent="login" @keydown="form.onKeydown($event)">
           <!-- Email -->
-          <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('email') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-              <has-error :form="form" field="email" />
+
+          <div class="mb-4 row">
+            <div class="col-md">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <fa icon="user" />
+                  </div>
+                </div>
+                <input
+                  v-model="form.email"
+                  :class="{ 'is-invalid': form.errors.has('email') }"
+                  class="form-control"
+                  type="email"
+                  name="email"
+                  placeholder="Type Email Address"
+                />
+                <has-error :form="form" field="email" />
+              </div>
             </div>
           </div>
-
           <!-- Password -->
-          <div class="mb-3 row">
-            <label class="col-md-3 col-form-label text-md-end">{{ $t('password') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
-              <has-error :form="form" field="password" />
+          <div class="mb-4 row">
+            <div class="col-md">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <fa icon="lock" />
+                  </div>
+                </div>
+                <input
+                  v-model="form.password"
+                  :class="{ 'is-invalid': form.errors.has('password') }"
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  placeholder="Type Password Here"
+                />
+                <has-error :form="form" field="password" />
+              </div>
             </div>
           </div>
 
           <!-- Remember Me -->
-          <div class="mb-3 row">
-            <div class="col-md-3" />
-            <div class="col-md-7 d-flex">
-              <checkbox v-model="remember" name="remember">
+          <div class="mb-4 row">
+            <div class="col-md mb-4">
+              <checkbox class="text-nowrap" v-model="remember" name="remember">
                 {{ $t('remember_me') }}
               </checkbox>
-
-              <router-link :to="{ name: 'password.request' }" class="small ms-auto my-auto">
+            </div>
+            <div class="col-md">
+              <router-link
+                :to="{ name: 'password.request' }"
+                class="small ms-auto my-auto text-nowrap"
+              >
                 {{ $t('forgot_password') }}
               </router-link>
             </div>
           </div>
 
-          <div class="mb-3 row">
-            <div class="col-md-7 offset-md-3 d-flex">
+          <div class="mb-4 row">
+            <div class="col-md d-flex">
               <!-- Submit Button -->
-              <v-button :loading="form.busy">
+              <v-button class="w-100 bg-main text-white" :loading="form.busy">
                 {{ $t('login') }}
               </v-button>
 
@@ -47,8 +80,8 @@
             </div>
           </div>
         </form>
-      </card>
-    </div>
+      </div>
+    </card>
   </div>
 </template>
 
@@ -64,7 +97,7 @@ export default {
 
   middleware: 'guest',
 
-  metaInfo () {
+  metaInfo() {
     return { title: this.$t('login') }
   },
 
@@ -77,7 +110,7 @@ export default {
   }),
 
   methods: {
-    async login () {
+    async login() {
       // Submit the form.
       const { data } = await this.form.post('/api/login')
 
@@ -94,7 +127,7 @@ export default {
       this.redirect()
     },
 
-    redirect () {
+    redirect() {
       const intendedUrl = Cookies.get('intended_url')
 
       if (intendedUrl) {
@@ -107,3 +140,51 @@ export default {
   }
 }
 </script>
+<style scoped>
+div.body {
+  background-color: var(--main-color);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+input {
+  height: 3rem;
+  background-color: var(--sub-color);
+  /* display: contents; */
+  outline: 1px solid var(--main-color) !important;
+  border-radius: 25px;
+}
+
+svg.user-icon {
+  width: 5rem;
+  background: var(--main-color) !important;
+  height: 5rem;
+  padding: 0.5rem;
+  color: #fff;
+  border-radius: 50%;
+}
+.input-group-text {
+  border-radius: 25px 0 0 25px !important;
+  background: var(--main-color) !important;
+  outline: 1px solid var(--main-color) !important;
+  /* border: 1px solid var(--main-color) !important; */
+  /* box-sizing: border-box; */
+  color: #fff;
+}
+.center-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+button.bg-main {
+  background-color: var(--main-color);
+  transition: all 0.7s;
+}
+button.bg-main:hover {
+  transform: scale(0.95);
+}
+</style>
