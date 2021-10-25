@@ -8,7 +8,7 @@
   </div>
   <div v-else class="row justify-content-center">
     <div class="col-md-3 m-3">
-      <card title="Our Users" class="settings-card">
+      <card title="User Tasks" class="settings-card">
         <ul class="nav flex-column nav-pills">
           <li v-for="user in users" :key="user.id" class="nav-item">
             <router-link
@@ -36,33 +36,49 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import UserCard from '../../../../components/User/UserCard.vue'
+import TaskCard from '../../../components/Task/TaskCard.vue'
+// import axios from 'axios'
 export default {
   components: {
-    UserCard
+    TaskCard
   },
-  data () {
-    return {
-      path: Boolean
-    }
-  },
+  middleware: 'admin',
+  // data () {
+  //   return {
+  //     current_page: this.c_page,
+  //     last_page: this.l_page
+  //   }
+  // },
   computed: mapGetters({
-    users: 'users/all'
+    tasks: 'tasks/show',
+    current_page: 'tasks/current_page',
+    last_page: 'tasks/last_page'
   }),
   watch: {
-    $route () {
-      if (this.$route.params) {
-        this.path = false
-      }
+    $route() {
+      this.getTasks()
     }
   },
-  mounted () {
-    this.getUsers()
+  created() {
+    this.getTasks()
   },
   methods: {
-    async getUsers () {
-      await this.$store.dispatch('users/fetchUsers')
-      console.log(this.users)
+    async getTasks() {
+      await this.$store.dispatch('tasks/fetchUserTasks', {
+        id: this.$route.params.id
+      })
+    },
+    async nextPage() {
+      await this.$store.dispatch('tasks/fetchNext', {
+        id: this.$route.params.id,
+        type: 'user'
+      })
+    },
+    async prevPage() {
+      await this.$store.dispatch('tasks/fetchPrev', {
+        id: this.$route.params.id,
+        type: 'user'
+      })
     }
   }
 }

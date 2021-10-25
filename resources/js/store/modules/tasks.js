@@ -16,10 +16,10 @@ export const getters = {
 // mutations
 export const mutations = {
   [types.FETCH_TASKS] (state, { tasks }) {
-    state.tasks = tasks
+    state.tasks = tasks.data
   },
   [types.FETCH_TASK] (state, { task }) {
-    state.task = task
+    state.task = task.data
     console.log(task);
   }
 }
@@ -35,11 +35,10 @@ export const actions = {
       console.log(e)
     }
   },
-  async fetchTask ({ commit }, { id }) {
+  async fetchUserTasks ({ commit }, { id }) {
     try {
-      const { data } = await axios.get(`/api/reports/tasks/${id}`)
-
-      commit(types.FETCH_TASK, { task: data.data })
+      const { data } = await axios.get(`/api/reports/tasks/user/${id}`)
+      commit(types.FETCH_TASK, { task: data })
     } catch (e) {
       console.log(e)
     }

@@ -8,44 +8,13 @@ export default [
   { path: '/', name: 'welcome', redirect: { name: 'login' } },
 
   // start of my custom route
-  { path: '/users', name: 'users', component: page('Users/All.vue') },
-  // { path: '/user/:id/tasks', name: 'user.id.tasks', component: page('User/All.vue') },
+  { path: '/users', name: 'users', component: page('Admin/Users/All.vue') },
+  { path: '/tasks/user/:id', name: 'users.tasks.id', params: true, component: page('Admin/Tasks/UserTasks.vue') },
 
   {
     path: '/reports/add',
     name: 'reports.add',
     component: page('User/index.vue')
-  },
-  {
-    path: '/admin',
-    name: 'admin',
-    component: page('Admin/index.vue'),
-  },
-  {
-    path: '/tasks/projects',
-    name: 'tasks.projects',
-    component: page('Admin/Tasks/Projects/index.vue'),
-    children: [
-      // { path: '', redirect: { name: 'reports' } },
-      {
-        path: ':id',
-        name: 'tasks.projects.id',
-        component: page('Admin/Tasks/Projects/Tasks.vue')
-      }
-    ]
-  },
-  {
-    path: '/tasks/users',
-    name: 'tasks.users',
-    component: page('Admin/Tasks/Users/index.vue'),
-    children: [
-      // { path: '', redirect: { name: 'reports' } },
-      {
-        path: ':id',
-        name: 'tasks.users.id',
-        component: page('Admin/Tasks/Users/Tasks.vue')
-      }
-    ]
   },
 
   // end of my custom route

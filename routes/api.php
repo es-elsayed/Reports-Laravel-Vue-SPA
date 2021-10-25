@@ -39,12 +39,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('reports/tasks', [TaskController::class,'index']);
     Route::get('reports/tasks/{id}', [TaskController::class,'show']);
     Route::post('reports/tasks', [TaskController::class,'store']);
+    Route::get('reports/tasks/user/{id}', [TaskController::class,'tasks']);
 
     Route::get('projects', [ProjectController::class,'index']);
 
     Route::get('users', [UserController::class,'index']);
+    Route::get('users/{id}', [UserController::class,'show']);
     Route::get('users/user', [ControllersUserController::class,'user']);
-    Route::get('users/{id}/tasks', [TaskController::class,'users']);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

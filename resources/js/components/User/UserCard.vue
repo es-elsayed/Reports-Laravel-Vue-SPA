@@ -1,6 +1,9 @@
 <template>
   <!-- :to="{ name: 'user.id.tasks', params: { id: user.id } }" -->
-  <router-link :to="{ name: 'tasks.users.id',params:{id:user.id} }" class="col-sm-6 col-md-4 col-xl-3 mb-3">
+  <router-link
+    :to="{ name: 'users.tasks.id', params: { id: user.id } }"
+    class="col-sm-6 col-md-4 col-xl-3 mb-3"
+  >
     <div class="col card">
       <div class="row my-3 justify-content-center">
         <div
