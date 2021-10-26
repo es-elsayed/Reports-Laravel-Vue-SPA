@@ -1,12 +1,16 @@
 <template>
-  <div class="card">
-    <h5 class="card-header">Featured</h5>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">
-        With supporting text below as a natural lead-in to additional content.
+  <div class="task-card hover mb-3">
+    <div class="bg-third py-2 px-3">
+      <div class="row">
+        <div class="col-4 light-style center">{{task.title}}</div>
+        <div class="col-2 time-style text-nowrap center">{{task.hours}} : {{task.minutes}}</div>
+        <div class="col-6 text-right light-style pt-1">Assign By: {{task.who_is_assign}}</div>
+      </div>
+    </div>
+    <div class="bg-second py-3 px-3">
+      <p class="light-style">
+        {{task.description}}
       </p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
 </template>
@@ -16,5 +20,8 @@ export default {
 }
 </script>
 <style scoped>
-
+div.task-card {
+  transition-duration: var(--main-duration);
+  border-radius: 25px !important;
+}
 </style>

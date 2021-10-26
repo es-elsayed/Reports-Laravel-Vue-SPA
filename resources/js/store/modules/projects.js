@@ -4,12 +4,14 @@ import * as types from '../mutation-types'
 // state
 export const state = {
   projects: null,
+  shared: null,
   project: null
 }
 
 // getters
 export const getters = {
   all: state => state.projects,
+  shared: state => state.project,
   show: state => state.project
 }
 
@@ -34,14 +36,14 @@ export const actions = {
       console.log(e)
     }
   }
-  // ,
-  // async fetchProject ({ commit }, { id }) {
-  //   try {
-  //     const { data } = await axios.get(`/api/projects/${id}`)
+  ,
+  async fetchSharedProject ({ commit }, { id }) {
+    try {
+      const { data } = await axios.get(`/api/projects/shared/user/${id}`)
 
-  //     commit(types.FETCH_PROJECT, { project: data.data })
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
-  // }
+      commit(types.FETCH_PROJECT, { project: data.data })
+    } catch (e) {
+      console.log(e)
+    }
+  }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -15,9 +16,15 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        // return 'hi';
         $projects = Project::all();
         return $projects;
+    }
+    public function shared($id)
+    {
+        $sharedProjectsId = Task::where('user_id', $id)->orderBy('created_at', 'DESC')->pluck('project_id');
+        return $projects = Project::
+            whereIn('id', $sharedProjectsId)
+            ->get(['id','name']);
     }
 
     /**

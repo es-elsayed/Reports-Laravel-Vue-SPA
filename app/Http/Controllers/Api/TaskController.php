@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ReportRequest;
 use App\Http\Requests\TaskRequest;
 use App\Http\Resources\TaskResource;
+use App\Models\Project;
 use App\Models\Report;
 use App\Models\Task;
 use Exception;
@@ -94,9 +95,20 @@ class TaskController extends Controller
     }
     public function tasks($id)
     {
-        // return 'hi';
         $tasks = Task::where('user_id', $id)->orderBy('created_at', 'DESC')->paginate(10);
+        // $sharedProjectsId = Task::where('user_id', $id)->orderBy('created_at', 'DESC')->pluck('project_id');
+        // $projects = Project::
+        //     whereIn('id', $sharedProjectsId)
+        //     ->get(['id','name']);
+        // return $projects;
+        // $projects = [];
+        // foreach ($tasks as $task) {
+        //     array_push($projects, $task->project);
+        // };
+        // $sharedProjects = array_unique($projects);
+
         return TaskResource::collection($tasks);
+        // return ['tasks' => TaskResource::collection($tasks), 'sharedProjects' => $projects];
     }
 
     /**

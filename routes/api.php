@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('reports/tasks/user/{id}', [TaskController::class,'tasks']);
 
     Route::get('projects', [ProjectController::class,'index']);
+    Route::get('projects/shared/user/{id}', [ProjectController::class,'shared']);
 
     Route::get('users', [UserController::class,'index']);
     Route::get('users/{id}', [UserController::class,'show']);

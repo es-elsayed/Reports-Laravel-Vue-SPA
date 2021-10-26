@@ -4,7 +4,7 @@
     :to="{ name: 'users.tasks.id', params: { id: user.id } }"
     class="col-sm-6 col-md-4 col-xl-3 mb-3"
   >
-    <div class="col card">
+    <div class="col card hover">
       <div class="row my-3 justify-content-center">
         <div
           class="col-12 img"
@@ -13,12 +13,12 @@
       </div>
       <div class="row mb-3">
         <div class="col">
-          <h5 class="time-text">Today</h5>
-          <div class="time">06:30</div>
+          <h5 class="light-style center mb-2">Today</h5>
+          <div class="time-style text-nowrap center">06:30</div>
         </div>
         <div class="col">
-          <h5 class="time-text">Today</h5>
-          <div class="time">06:30</div>
+          <h5 class="light-style center mb-2">Today</h5>
+          <div class="time-style text-nowrap center">06:30</div>
         </div>
       </div>
       <div class="row mb-3">
@@ -46,12 +46,9 @@ a {
   border-radius: 20px;
   min-height: 22rem;
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
-  transition-duration: 0.5s;
+  transition-duration: var(--main-duration);
 }
-.card:hover {
-  transform: scale(0.99);
-  box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.3);
-}
+
 .img {
   width: 8rem;
   height: 8rem;
@@ -60,17 +57,7 @@ a {
   background-position: center center;
   background-size: 120%;
 }
-div.time {
-  border: 1px solid var(--main-color);
-  text-align: center;
-  color: var(--main-color);
-  border-radius: 4px;
-  padding: 0.25rem 1rem;
-}
-h5 {
-  font-weight: 200;
-  text-align: center;
-}
+
 /*.card.card-has-bg {
   transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
   background-size: 120%;
