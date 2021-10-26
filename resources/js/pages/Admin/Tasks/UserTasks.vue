@@ -97,6 +97,7 @@ export default {
   mounted() {
     this.getTasks()
     this.getUser()
+    this.sharedProjects()
     // console.log(this.projects)
   },
   methods: {

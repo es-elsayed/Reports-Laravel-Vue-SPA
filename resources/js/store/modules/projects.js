@@ -11,7 +11,7 @@ export const state = {
 // getters
 export const getters = {
   all: state => state.projects,
-  shared: state => state.project,
+  shared: state => state.shared,
   show: state => state.project
 }
 
@@ -20,8 +20,8 @@ export const mutations = {
   [types.FETCH_PROJECTS] (state, { projects }) {
     state.projects = projects
   },
-  [types.FETCH_PROJECT] (state, { project }) {
-    state.project = project
+  [types.FETCH_PROJECT] (state, { sharedprojects }) {
+    state.shared = sharedprojects
   }
 }
 
@@ -35,13 +35,12 @@ export const actions = {
     } catch (e) {
       console.log(e)
     }
-  }
-  ,
+  },
   async fetchSharedProject ({ commit }, { id }) {
     try {
       const { data } = await axios.get(`/api/projects/shared/user/${id}`)
 
-      commit(types.FETCH_PROJECT, { project: data.data })
+      commit(types.FETCH_PROJECT, { sharedprojects: data })
     } catch (e) {
       console.log(e)
     }
