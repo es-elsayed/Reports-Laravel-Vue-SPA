@@ -1,5 +1,5 @@
 <template>
-  <div class="task-card hover mb-3">
+  <div class="card-style hover mb-3">
     <div class="bg-third py-2 px-3">
       <div class="row">
         <div class="col-4 light-style center">{{task.title}}</div>
@@ -20,8 +20,8 @@ export default {
 }
 </script>
 <style scoped>
-div.task-card {
+/* div.task-card {
   transition-duration: var(--main-duration);
   border-radius: 25px !important;
-}
+} */
 </style>

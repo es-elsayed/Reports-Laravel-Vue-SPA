@@ -4,7 +4,7 @@
     :to="{ name: 'users.tasks.id', params: { id: user.id } }"
     class="col-sm-6 col-md-4 col-xl-3 mb-3"
   >
-    <div class="col card hover">
+    <div class="col card-style hover">
       <div class="row my-3 justify-content-center">
         <div
           class="col-12 img"
@@ -38,15 +38,15 @@ export default {
 a {
   text-decoration: none;
 }
-.card {
+.card-style {
+  min-height: 22rem;
   background-color: var(--third-color);
-  border: none;
+  /* border: none;
   transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
   overflow: hidden;
-  border-radius: 20px;
-  min-height: 22rem;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
-  transition-duration: var(--main-duration);
+  border-radius: 10px !important;
+  box-shadow: -4px 4px 12px 0 rgba(0, 0, 0, 0.2); */
+  /* transition-duration: var(--main-duration); */
 }
 
 .img {

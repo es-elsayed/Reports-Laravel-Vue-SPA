@@ -30,7 +30,7 @@
         />
       </div>
       <div class="col-4">
-        <user-card :user="user" />
+        <user-card v-if="user" :user="user" />
       </div>
     </div>
      <div class="row">
