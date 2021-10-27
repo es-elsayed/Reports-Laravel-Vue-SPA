@@ -5,7 +5,8 @@
         <select
           id="project_id"
           name="project_id"
-          class="form-select form-select-lg mb-3 select-odd"
+          class="form-select form-select-lg mb-3 select-style"
+          @change="log"
         >
           <!-- :class="{ 'is-invalid': form.errors.has('project_id') }" -->
           <option>Choose Project Name</option>
@@ -33,7 +34,7 @@
         <user-card v-if="user" :user="user" />
       </div>
     </div>
-     <div class="row">
+    <div class="row">
       <div class="col my-3">
         <nav aria-label="...">
           <ul class="pagination">
@@ -75,7 +76,7 @@ export default {
     UserCard,
     TaskCard
   },
-  data() {
+  data () {
     return {
       path: Boolean
     }
@@ -88,42 +89,45 @@ export default {
     current_page: 'tasks/currentPage'
   }),
   watch: {
-    $route() {
+    $route () {
       if (this.$route.params) {
         this.path = false
       }
     }
   },
-  mounted() {
+  mounted () {
     this.getTasks()
     this.getUser()
     this.sharedProjects()
     // console.log(this.projects)
   },
   methods: {
-    async getTasks() {
+    log (e) {
+      console.log(e.target.options[e.target.options.selectedIndex].value)
+    },
+    async getTasks () {
       await this.$store.dispatch('tasks/fetchUserTasks', {
         id: this.$route.params.id
       })
       // console.log(this.tasks)
     },
-    async getUser() {
+    async getUser () {
       await this.$store.dispatch('users/fetchUser', {
         id: this.$route.params.id
       })
       // console.log(this.user)
     },
-    async sharedProjects() {
+    async sharedProjects () {
       await this.$store.dispatch('projects/fetchSharedProject', {
         id: this.$route.params.id
       })
     },
-    async prevPage() {
+    async prevPage () {
       await this.$store.dispatch('tasks/fetchPrevPage', {
         id: this.$route.params.id
       })
     },
-    async nextPage() {
+    async nextPage () {
       await this.$store.dispatch('tasks/fetchNextPage', {
         id: this.$route.params.id
       })
@@ -131,11 +135,4 @@ export default {
   }
 }
 </script>
-<style scoped>
-select {
-  background-color: var(--sub-color);
-  border-radius: 25px;
-  border: 1px solid var(--main-color);
-  color: var(--main-color);
-}
-</style>
+<style scoped></style>

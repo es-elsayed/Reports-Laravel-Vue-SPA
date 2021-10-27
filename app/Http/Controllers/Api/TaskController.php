@@ -37,6 +37,11 @@ class TaskController extends Controller
         //
     }
 
+    public function ProjectTasks($pid,$uid)
+    {
+        $tasks = Task::where([['project_id',$pid],['user_id', $uid]])->orderBy('created_at', 'DESC')->paginate(10);
+        return TaskResource::collection($tasks);
+    }
     /**
      * Store a newly created resource in storage.
      *
