@@ -1,8 +1,6 @@
 <template>
-  <div class="container">
-    <card title="Daily Report">
-      <add-task :projects="projects" :users="users" :reports="reports" />
-    </card>
+  <div class="bg-third report-add text-main py-2 px-2">
+    <add-task :projects="projects" :users="users" :reports="reports" />
   </div>
 </template>
 <script>
@@ -14,6 +12,7 @@ export default {
   components: {
     AddTask
   },
+  middleware: 'auth',
 
   data () {
     return {
@@ -41,3 +40,4 @@ export default {
   }
 }
 </script>
+<style scoped></style>

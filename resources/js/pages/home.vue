@@ -28,8 +28,10 @@ export default {
   created () {
     if (this.role === 'admin') {
       this.$router.push({ name: 'users' })
+      document.body.classList.remove('user-body')
     } else {
       this.$router.push({ name: 'reports.add' })
+      document.body.classList.add('user-body')
     }
   }
 }

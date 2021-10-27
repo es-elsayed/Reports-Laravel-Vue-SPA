@@ -37,9 +37,9 @@ class TaskController extends Controller
         //
     }
 
-    public function ProjectTasks($pid,$uid)
+    public function ProjectTasks($pid, $uid)
     {
-        $tasks = Task::where([['project_id',$pid],['user_id', $uid]])->orderBy('created_at', 'DESC')->paginate(10);
+        $tasks = Task::where([['project_id', $pid], ['user_id', $uid]])->orderBy('created_at', 'DESC')->paginate(10);
         return TaskResource::collection($tasks);
     }
     /**
@@ -50,28 +50,28 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request)
     {
-        if ($request->report_id == null) {
-            $lastReport = Report::where('status', '1')->get();
-            if (sizeof($lastReport) == 1) {
-                $lastReportId = $lastReport[0]->id;
-                $task =  Task::create([
-                    'title' => $request->title,
-                    'project_id' => $request->project_id,
-                    'report_id' => $lastReportId,
-                    'who_is_assign' => $request->who_is_assign,
-                    'description' => $request->description,
-                    'hours' => $request->hours,
-                    'minutes' => $request->minutes,
-                    'user_id' => $request->user_id,
-                ]);
-                return new TaskResource($task);
-            } else {
-                return 'ReportId cannot be null, please try again later';
-            }
-        };
         try {
+            if ($request->report_id == null) {
+                $lastReport = Report::where('status', '1')->get();
+                if (sizeof($lastReport) == 1) {
+                    $lastReportId = $lastReport[0]->id;
+                    $task =  Task::create([
+                        // 'title' => $request->title,
+                        'project_id' => $request->project_id,
+                        'report_id' => $lastReportId,
+                        'who_is_assign' => $request->who_is_assign,
+                        'description' => $request->description,
+                        'hours' => $request->hours,
+                        'minutes' => $request->minutes,
+                        'user_id' => $request->user_id,
+                    ]);
+                    return new TaskResource($task);
+                } else {
+                    return 'ReportId cannot be null, please try again later';
+                }
+            };
             $task =  Task::create([
-                'title' => $request->title,
+                // 'title' => $request->title,
                 'project_id' => $request->project_id,
                 'report_id' => $request->report_id,
                 'who_is_assign' => $request->who_is_assign,
@@ -101,11 +101,10 @@ class TaskController extends Controller
     public function tasks(Request $request, $id)
     {
         // return $request;
-        if ($request->project_id){
-            $tasks = Task::where([['project_id',$request->project_id],['user_id', $id]])->orderBy('created_at', 'DESC')->paginate(3);
+        if ($request->project_id) {
+            $tasks = Task::where([['project_id', $request->project_id], ['user_id', $id]])->orderBy('created_at', 'DESC')->paginate(3);
             return TaskResource::collection($tasks);
-        }
-        else {
+        } else {
             $tasks = Task::where('user_id', $id)->orderBy('created_at', 'DESC')->paginate(3);
             return TaskResource::collection($tasks);
         }

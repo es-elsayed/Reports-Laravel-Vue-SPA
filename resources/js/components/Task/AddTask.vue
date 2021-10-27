@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <form @submit.prevent="addTask">
-      <div class="row mt-2 mb-4">
+      <!-- <div class="row mt-2 mb-4">
         <h4 class="col-sm-4">
           <label for="title">Task Name</label>
         </h4>
@@ -16,7 +16,7 @@
           >
         </div>
         <has-error :form="form" field="title" />
-      </div>
+      </div> -->
 
       <div class="row my-2">
         <div class="col-xl mb-20">
@@ -25,7 +25,7 @@
             id="project_id"
             v-model="form.project_id"
             name="project_id"
-            class="form-select form-select-lg mb-3 select-odd"
+            class="form-select form-select-lg mb-3 select-style"
             :class="{ 'is-invalid': form.errors.has('project_id') }"
           >
             <option>Choose Project Name</option>
@@ -47,7 +47,7 @@
             id="who"
             v-model="form.who_is_assign"
             name="who_is_assign"
-            class="form-select form-select-lg mb-3 select-even"
+            class="form-select form-select-lg mb-3 select-style"
             :class="{ 'is-invalid': form.errors.has('who_is_assign') }"
           >
             <option>Choose Who is Assign</option>
@@ -63,7 +63,7 @@
             id="report_id"
             v-model="form.report_id"
             name="report_id"
-            class="form-select form-select-lg mb-3 select-odd"
+            class="form-select form-select-lg mb-3 select-style"
             :class="{ 'is-invalid': form.errors.has('who_is_assign') }"
           >
             <option>Choose Report Name</option>
@@ -83,9 +83,9 @@
       <!-- description row -->
       <div class="form-group my-2">
         <div class="col-sm-4">
-          <h4 class="font-20 mb-3">
+          <h5 class="text-main">
             <label for="description">Description</label>
-          </h4>
+          </h5>
         </div>
         <textarea
           id="description"
@@ -100,18 +100,14 @@
       <!-- time row -->
       <div class="row my-2">
         <!-- Hours col -->
-        <div class="col-xl-4 my-3">
-          <div class="row">
-            <h4 class="col-4">
+        <div class="col-md-6 my-3">
+          <div class="row center">
+            <h5 class="col-12 text-main center">
               <label for="hours"> Hours </label>
-            </h4>
-            <div class="col-8">
-              <div class="input-group warning bootstrap-touchspin">
-                <span class="input-group-btn input-group-prepend"><button
-                  class="btn text-light"
-                  type="button"
-                  @click="decrementHours"
-                >
+            </h5>
+            <div class="col-12 center">
+              <div class="input-group bootstrap-touchspin">
+                <span class="input-group-btn input-group-prepend"><button class="btn" type="button" @click="decrementHours">
                   -
                 </button></span><input
                   id="hours"
@@ -119,11 +115,7 @@
                   type="text"
                   name="hours"
                   class="form-control"
-                ><span class="input-group-btn input-group-append"><button
-                  class="btn text-light"
-                  type="button"
-                  @click="incrementHours"
-                >
+                ><span class="input-group-btn input-group-append"><button class="btn" type="button" @click="incrementHours">
                   +
                 </button></span>
               </div>
@@ -132,18 +124,14 @@
           </div>
         </div>
         <!-- minutes col -->
-        <div class="col-xl-4 offset-xl-2 my-3">
-          <div class="row">
-            <h4 class="col-4">
+        <div class="col-md-6 my-3">
+          <div class="row center">
+            <h5 class="col-12 text-main center">
               <label for="minutes">Minutes </label>
-            </h4>
-            <div class="col-8">
-              <div class="input-group warning bootstrap-touchspin">
-                <span class="input-group-btn input-group-prepend"><button
-                  class="btn text-light"
-                  type="button"
-                  @click="decrementMinutes"
-                >
+            </h5>
+            <div class="col-12 center">
+              <div class="input-group bootstrap-touchspin">
+                <span class="input-group-btn input-group-prepend"><button class="btn" type="button" @click="decrementMinutes">
                   -
                 </button></span><input
                   id="minutes"
@@ -151,11 +139,7 @@
                   type="text"
                   name="minutes"
                   class="form-control"
-                ><span class="input-group-btn input-group-append"><button
-                  class="btn text-light"
-                  type="button"
-                  @click="incrementMinutes"
-                >
+                ><span class="input-group-btn input-group-append"><button class="btn" type="button" @click="incrementMinutes">
                   +
                 </button></span>
               </div>
@@ -168,18 +152,9 @@
         </h5>
       </div>
 
-      <div class="row my-2 text-center">
-        <!-- <div class="col">
-          <button
-            type="button"
-            class="btn btn-danger btn-action"
-            @click.stop="GoBack"
-          >
-            Back
-          </button>
-        </div> -->
-        <div class="col-2 my-5">
-          <button type="submit" class="btn btn-light px-5 py-3 submit">
+      <div class="row my-2 mx-auto text-center">
+        <div class="col my-5">
+          <button type="submit" class="hover px-5 py-3 submit">
             Submit
           </button>
         </div>
@@ -196,7 +171,7 @@ export default {
   emits: ['close'],
   data: () => ({
     form: new Form({
-      title: '',
+      // title: '',
       who_is_assign: 'Choose Who is Assign',
       project_id: 'Choose Project Name',
       report_id: null,
@@ -326,59 +301,29 @@ export default {
 }
 </script>
 <style scoped>
-/* * {
-  color: #05374e;
-} */
-
-select,
-input[type='text'],
-input[type='date'] {
-  border-radius: 50px;
-}
-
 textarea.theme-input-style.style--seven {
-  height: 17rem;
+  min-height: 17rem;
+  background-color: transparent;
+  border: 1px solid var(--main-color);
 }
 
+.input-group.bootstrap-touchspin {
+  border: 1px solid var(--main-color) !important;
+  border-radius: 25px;
+  background-color: transparent;
+}
 .input-group.bootstrap-touchspin button.btn {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  top: -2px;
-  background-color: #043047;
-
-}
-.select-even {
-  background-color: #fdc106;
-  color: #262626;
-}
-.select-odd {
-  background-color: #262626;
-  color: #fdc106;
-}
-.input-group.bootstrap-touchspin .input-group-append button.btn {
-  left: -27px;
-  background-color: #262626;
-  color: #fdc106;
-}
-.input-group.bootstrap-touchspin .input-group-prepend button.btn {
-  left: 27px;
-  background-color: #fdc106;
-  color: #262626;
+  background-color: transparent;
+  line-height: 1;
+  color: var(--main-color)
 }
 .input-group > .form-control:not(:first-child) {
-  /* background-color: red; */
+  background-color: transparent;
+  color: var(--main-color);
+  font-weight: 600;
   text-align: center;
-}
-button.submit {
-  font-weight: bolder;
-  border-radius: 50px;
-}
-button.submit:hover {
-  background-color: rgb(255, 194, 81);
-  color: #fff;
-}
-button.btn.text-light {
-  z-index: 9;
 }
 </style>

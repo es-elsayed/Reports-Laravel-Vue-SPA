@@ -14,7 +14,7 @@ export default [
   {
     path: '/reports/add',
     name: 'reports.add',
-    component: page('User/index.vue')
+    component: page('Users/index.vue')
   },
 
   // end of my custom route
