@@ -4,9 +4,10 @@
       <div class="col-4">
         <select
           id="project_id"
+          v-model="project_id"
           name="project_id"
           class="form-select form-select-lg mb-3 select-style"
-          @change="log"
+          @change="getProjectTasks"
         >
           <!-- :class="{ 'is-invalid': form.errors.has('project_id') }" -->
           <option>Choose Project Name</option>
@@ -78,6 +79,7 @@ export default {
   },
   data () {
     return {
+      project_id: 'Choose Project Name',
       path: Boolean
     }
   },
@@ -99,23 +101,26 @@ export default {
     this.getTasks()
     this.getUser()
     this.sharedProjects()
-    // console.log(this.projects)
+    // console.log(typeof 0)
   },
   methods: {
-    log (e) {
-      console.log(e.target.options[e.target.options.selectedIndex].value)
-    },
     async getTasks () {
       await this.$store.dispatch('tasks/fetchUserTasks', {
-        id: this.$route.params.id
+        id: this.$route.params.id,
+        projectId: null
       })
-      // console.log(this.tasks)
+    },
+    async getProjectTasks () {
+      await this.$store.dispatch('tasks/fetchUserTasks', {
+        id: this.$route.params.id,
+        projectId: this.project_id
+      })
+      console.log(this.project_id)
     },
     async getUser () {
       await this.$store.dispatch('users/fetchUser', {
         id: this.$route.params.id
       })
-      // console.log(this.user)
     },
     async sharedProjects () {
       await this.$store.dispatch('projects/fetchSharedProject', {
@@ -123,14 +128,30 @@ export default {
       })
     },
     async prevPage () {
-      await this.$store.dispatch('tasks/fetchPrevPage', {
-        id: this.$route.params.id
-      })
+      if (typeof this.project_id === 'number') {
+        await this.$store.dispatch('tasks/fetchPrevPage', {
+          id: this.$route.params.id,
+          projectId: this.project_id
+        })
+      } else {
+        await this.$store.dispatch('tasks/fetchPrevPage', {
+          id: this.$route.params.id,
+          projectId: null
+        })
+      }
     },
     async nextPage () {
-      await this.$store.dispatch('tasks/fetchNextPage', {
-        id: this.$route.params.id
-      })
+      if (typeof this.project_id === 'number') {
+        await this.$store.dispatch('tasks/fetchNextPage', {
+          id: this.$route.params.id,
+          projectId: this.project_id
+        })
+      } else {
+        await this.$store.dispatch('tasks/fetchNextPage', {
+          id: this.$route.params.id,
+          projectId: null
+        })
+      }
     }
   }
 }

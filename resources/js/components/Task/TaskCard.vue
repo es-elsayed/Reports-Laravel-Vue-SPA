@@ -4,6 +4,7 @@
       <div class="row">
         <div class="col-4 light-style center">{{task.title}}</div>
         <div class="col-2 time-style text-nowrap center">{{task.hours}} : {{task.minutes}}</div>
+        <!-- <div class="col-2">{{task.project_name}}</div> -->
         <div class="col-6 text-right light-style pt-1">Assign By: {{task.who_is_assign}}</div>
       </div>
     </div>

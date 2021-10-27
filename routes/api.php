@@ -39,7 +39,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('reports/tasks', [TaskController::class,'index']);
     Route::get('reports/tasks/{id}', [TaskController::class,'show']);
     Route::post('reports/tasks', [TaskController::class,'store']);
-    Route::get('reports/tasks/user/{id}', [TaskController::class,'tasks']);
+
+    Route::get('tasks/user/{id}', [TaskController::class,'tasks']);
     Route::get('tasks/project/{pid}/user/{uid}', [TaskController::class,'ProjectTasks']);
 
     Route::get('projects', [ProjectController::class,'index']);

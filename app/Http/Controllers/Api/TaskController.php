@@ -98,22 +98,17 @@ class TaskController extends Controller
         $tasks = Task::where('project_id', $id)->orderBy('created_at', 'DESC')->paginate(10);
         return TaskResource::collection($tasks);
     }
-    public function tasks($id)
+    public function tasks(Request $request, $id)
     {
-        $tasks = Task::where('user_id', $id)->orderBy('created_at', 'DESC')->paginate(10);
-        // $sharedProjectsId = Task::where('user_id', $id)->orderBy('created_at', 'DESC')->pluck('project_id');
-        // $projects = Project::
-        //     whereIn('id', $sharedProjectsId)
-        //     ->get(['id','name']);
-        // return $projects;
-        // $projects = [];
-        // foreach ($tasks as $task) {
-        //     array_push($projects, $task->project);
-        // };
-        // $sharedProjects = array_unique($projects);
-
-        return TaskResource::collection($tasks);
-        // return ['tasks' => TaskResource::collection($tasks), 'sharedProjects' => $projects];
+        // return $request;
+        if ($request->project_id){
+            $tasks = Task::where([['project_id',$request->project_id],['user_id', $id]])->orderBy('created_at', 'DESC')->paginate(3);
+            return TaskResource::collection($tasks);
+        }
+        else {
+            $tasks = Task::where('user_id', $id)->orderBy('created_at', 'DESC')->paginate(3);
+            return TaskResource::collection($tasks);
+        }
     }
 
     /**
