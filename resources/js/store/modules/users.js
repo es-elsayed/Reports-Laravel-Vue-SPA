@@ -29,7 +29,7 @@ export const actions = {
     try {
       const { data } = await axios.get('/api/users')
 
-      commit(types.FETCH_USERS, { users: data })
+      commit(types.FETCH_USERS, { users: data.data })
     } catch (e) {
       console.log(e)
     }

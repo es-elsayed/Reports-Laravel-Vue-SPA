@@ -22,8 +22,10 @@ class ReportController extends Controller
     public function index()
     {
 
-        $projects = Project::all();
-        $users=User::all();
+        $projects = Project::where('name', '!=', 'Other')->orderBy('name')->get();
+        $other = Project::where('name', 'Other')->get();
+        $projects = $projects->merge($other);
+        $users=User::where('can_assign', '1')->orderBy('name')->get();
         $reports=Report::where('status','1')->get();
         return
         [

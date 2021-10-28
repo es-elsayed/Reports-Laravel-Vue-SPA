@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 27, 2021 at 05:07 PM
+-- Generation Time: Oct 28, 2021 at 02:55 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -110,10 +110,10 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Project One', '2021-10-05 14:12:04', '2021-10-05 14:12:04'),
-(2, 'Project Three', '2021-10-01 14:12:04', '2021-10-01 14:12:04'),
-(3, 'Project Four', '2021-10-15 14:12:04', '2021-10-20 14:12:04'),
-(3000, 'Project five', '2021-10-15 14:12:04', '2021-10-20 14:12:04'),
+(1, 'Z One', '2021-10-05 14:12:04', '2021-10-05 14:12:04'),
+(2, 'A Three', '2021-10-01 14:12:04', '2021-10-01 14:12:04'),
+(3, 'X Four', '2021-10-15 14:12:04', '2021-10-20 14:12:04'),
+(3000, 'R five', '2021-10-15 14:12:04', '2021-10-20 14:12:04'),
 (3001, 'Other', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -162,10 +162,10 @@ CREATE TABLE `tasks` (
 
 INSERT INTO `tasks` (`id`, `description`, `hours`, `minutes`, `created_at`, `updated_at`, `project_id`, `who_is_assign`, `user_id`, `report_id`) VALUES
 (1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolor perferendis sit adipisci itaque porro delectus rem voluptatem. Beatae fugiat sint ea aperiam. Repudiandae vel, perspiciatis quisquam facere iste exercitationem!', 1, 30, '2021-10-01 14:14:32', '2021-10-01 14:14:32', 3, 3, 4, 1),
-(2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolor perferendis sit adipisci itaque porro delectus rem voluptatem. Beatae fugiat sint ea aperiam. Repudiandae vel, perspiciatis quisquam facere iste exercitationem!', 2, 15, '2021-10-14 14:14:32', '2021-10-14 14:14:32', 3000, 4, 3, 1),
+(2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolor perferendis sit adipisci itaque porro delectus rem voluptatem. Beatae fugiat sint ea aperiam. Repudiandae vel, perspiciatis quisquam facere iste exercitationem!', 2, 15, '2021-10-28 14:14:32', '2021-10-14 14:14:32', 3000, 4, 2, 1),
 (3, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolor perferendis sit adipisci itaque porro delectus rem voluptatem. Beatae fugiat sint ea aperiam. Repudiandae vel, perspiciatis quisquam facere iste exercitationem!', 1, 30, '2021-10-10 14:14:32', '2021-10-10 14:14:32', 2, 3, 4, 1),
-(4, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolor perferendis sit adipisci itaque porro delectus rem voluptatem. Beatae fugiat sint ea aperiam. Repudiandae vel, perspiciatis quisquam facere iste exercitationem!', 5, 45, '2021-10-15 14:14:32', '2021-10-15 14:14:32', 3001, 3, 3, 1),
-(5, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolor perferendis sit adip pudiandae vel, perspiciatis quisquam facere iste exercitationem!', 5, 22, '2021-10-01 14:14:32', '2021-10-01 14:14:32', 3001, 4, 3, 1),
+(4, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolor perferendis sit adipisci itaque porro delectus rem voluptatem. Beatae fugiat sint ea aperiam. Repudiandae vel, perspiciatis quisquam facere iste exercitationem!', 5, 45, '2021-10-15 14:14:32', '2021-10-15 14:14:32', 3001, 3, 2, 1),
+(5, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolor perferendis sit adip pudiandae vel, perspiciatis quisquam facere iste exercitationem!', 5, 22, '2021-08-01 14:14:32', '2021-10-01 14:14:32', 3001, 4, 3, 1),
 (6, 'L adipisci itaque porro delectus rem voluptatem. Beatae fugiat sint ea aperiam. Repudiandae vel, perspiciatis quisquam facere iste exercitationem!', 5, 30, '2021-10-14 14:14:32', '2021-10-14 14:14:32', 1, 3, 4, 1),
 (7, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolor perferendis sit adipisci itaque porro delectus rem voluptatem. Beatae fugiat sint ea aperiam.', 11, 30, '2021-10-10 14:14:32', '2021-10-10 14:14:32', 2, 4, 4, 1),
 (8, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolor perferendis sit adipisci  . Beatae fugiat sint ea aperiam. Repudiandae vel, perspiciatis quisquam facere iste exercitationem!', 15, 0, '2021-10-15 14:14:32', '2021-10-15 14:14:32', 3001, 3, 3, 1),
@@ -200,7 +200,15 @@ INSERT INTO `tasks` (`id`, `description`, `hours`, `minutes`, `created_at`, `upd
 (37, 'This is from Islam to Islam This is from Islam to Islam This is from Islam to Islam This is from Islam to Islam This is from Islam to Islam This is from Islam to Islam This is from Islam to Islam This is from Islam to Islam This is from Islam to Islam This is from Islam to Islam This is from Islam to Islam', 1, 0, '2021-10-27 11:09:58', '2021-10-27 11:09:58', 1, 4, 3, 1),
 (38, 'This is from Admin to Admin This is from Admin to Admin This is from Admin to Admin This is from Admin to Admin This is from Admin to Admin This is from Admin to Admin This is from Admin to Admin This is from Admin to Admin This is from Admin to Admin', 2, 2, '2021-10-27 11:11:27', '2021-10-27 11:11:27', 3001, 3, 4, 1),
 (39, 'This is from Admin to Admin This is from Admin to Admin', 1, 1, '2021-10-27 11:12:06', '2021-10-27 11:12:06', 1, 3, 4, 1),
-(40, 'Last test from islaaaaam Last test from islaaaaam Last test from islaaaaam Last test from islaaaaam Last test from islaaaaam Last test from islaaaaam', 0, 1, '2021-10-27 12:11:53', '2021-10-27 12:11:53', 3001, 3, 4, 1);
+(40, 'Last test from islaaaaam Last test from islaaaaam Last test from islaaaaam Last test from islaaaaam Last test from islaaaaam Last test from islaaaaam', 0, 1, '2021-10-27 12:11:53', '2021-10-27 12:11:53', 3001, 3, 4, 1),
+(41, 'This is admin This is admin This is admin This is admin This is admin This is admin This is admin', 4, 8, '2021-10-28 08:49:28', '2021-10-28 08:49:28', 3000, 3, 3, 1),
+(42, 'Task for day Task for day Task for day Task for day Task for day Task for day v', 7, 59, '2021-10-28 09:58:20', '2021-10-28 09:58:20', 3, 3, 4, 1),
+(43, 'Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool Lool v', 5, 59, '2021-10-28 09:58:56', '2021-10-28 09:58:56', 1, 2, 4, 1),
+(44, 'qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer', 6, 5, '2021-10-28 10:29:58', '2021-10-28 10:29:58', 1, 3, 4, 1),
+(45, 'qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer', 5, 3, '2021-10-28 10:30:10', '2021-10-28 10:30:10', 1, 2, 4, 1),
+(46, 'qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer', 3, 0, '2021-10-28 10:30:20', '2021-10-28 10:30:20', 1, 3, 4, 1),
+(47, 'qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer qwerqwerewqrwqer', 3, 0, '2021-10-28 10:30:54', '2021-10-28 10:30:54', 1, 3, 4, 1),
+(48, 'zzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzzzzzzzzzzzzz', 8, 0, '2021-10-28 10:31:35', '2021-10-28 10:31:35', 1, 2, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -214,6 +222,8 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `job` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `can_assign` int(11) NOT NULL DEFAULT 0,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -225,9 +235,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `image`, `role`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(3, 'Admin', 'admin@admin.com', '', 'admin', NULL, '$2y$10$iaJtgbnplpH6dE.Z.BabOu4IfD7c7b8luA04jjPwCV1pywaJvKelS', NULL, '2021-10-24 14:05:55', '2021-10-24 14:05:55'),
-(4, 'Islam', 'islam@gmail.com', '', 'user', NULL, '$2y$10$iaJtgbnplpH6dE.Z.BabOu4IfD7c7b8luA04jjPwCV1pywaJvKelS', NULL, '2021-10-20 14:05:55', '2021-10-20 14:05:55');
+INSERT INTO `users` (`id`, `name`, `email`, `image`, `role`, `job`, `can_assign`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'Ziko', 'adham@gmail.com', '', 'user', 'Front-end', 1, NULL, '$2y$10$iaJtgbnplpH6dE.Z.BabOu4IfD7c7b8luA04jjPwCV1pywaJvKelS', NULL, '2021-08-20 14:05:55', '2021-10-20 14:05:55'),
+(3, 'Admin', 'admin@admin.com', '', 'admin', 'front-end', 1, NULL, '$2y$10$iaJtgbnplpH6dE.Z.BabOu4IfD7c7b8luA04jjPwCV1pywaJvKelS', NULL, '2021-10-24 14:05:55', '2021-10-24 14:05:55'),
+(4, 'Islam', 'islam@gmail.com', '', 'user', 'Back-end', 0, NULL, '$2y$10$iaJtgbnplpH6dE.Z.BabOu4IfD7c7b8luA04jjPwCV1pywaJvKelS', NULL, '2021-10-20 14:05:55', '2021-10-20 14:05:55');
 
 --
 -- Indexes for dumped tables
@@ -327,13 +338,13 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

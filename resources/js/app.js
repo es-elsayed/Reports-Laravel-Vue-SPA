@@ -17,6 +17,13 @@ Vue.filter('formatDate', function (value) {
     return moment(String(value)).format('DD-MM-YYYY ') //    hh:mm for hours and minutes
   }
 })
+Vue.filter('toTime', function (value) {
+  if (value < 9 && value >= 0) {
+    return '0' + value
+  } else {
+    return value
+  }
+})
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -22,8 +22,8 @@
         </select>
       </div>
     </div>
-    <div class="row">
-      <div class="col-8 pt-4">
+    <div class="row col-reverse">
+      <div class="col-md-8 pt-4">
         <task-card
           v-for="(task, index) in tasks"
           :key="index"
@@ -31,7 +31,7 @@
           :index="index"
         />
       </div>
-      <div class="col-4">
+      <div class="col-md-4">
         <user-card v-if="user" :user="user" />
       </div>
     </div>
@@ -77,6 +77,7 @@ export default {
     UserCard,
     TaskCard
   },
+  middleware: ['auth', 'admin'],
   data () {
     return {
       project_id: 'Choose Project Name',
@@ -156,4 +157,10 @@ export default {
   }
 }
 </script>
-<style scoped></style>
+<style scoped>
+@media (max-width: 767px) {
+  .col-reverse {
+    flex-direction: column-reverse;
+  }
+}
+</style>

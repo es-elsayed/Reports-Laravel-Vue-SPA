@@ -23,7 +23,7 @@ class ProjectController extends Controller
     {
         $sharedProjectsId = Task::where('user_id', $id)->orderBy('created_at', 'DESC')->pluck('project_id');
         return $projects = Project::
-            whereIn('id', $sharedProjectsId)
+            whereIn('id', $sharedProjectsId)->orderBy('name')
             ->get(['id','name']);
     }
 

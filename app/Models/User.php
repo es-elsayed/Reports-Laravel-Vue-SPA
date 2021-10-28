@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -113,5 +114,14 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     public function getJWTCustomClaims()
     {
         return [];
+    }
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
+    public function currentMonthTasks(){
+        return $this->hasMany(Task::class)->whereMonth('created_at', Carbon::now()->month);
+    }
+    public function currentDayTasks(){
+        return $this->hasMany(Task::class)->whereDate('created_at', Carbon::today());
     }
 }

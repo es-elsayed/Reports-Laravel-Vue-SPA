@@ -19,7 +19,7 @@
       </div> -->
 
       <div class="row my-2">
-        <div class="col-xl mb-20">
+        <div class="col-md-6 mb-20">
           <label for="project_id" class="bold">Project Name</label>
           <select
             id="project_id"
@@ -41,7 +41,7 @@
           </select>
           <has-error :form="form" field="project_id" />
         </div>
-        <div class="col-xl mb-20">
+        <div class="col-md-6 mb-20">
           <label for="who" class="bold">Who Is Assign</label>
           <select
             id="who"
@@ -82,11 +82,7 @@
 
       <!-- description row -->
       <div class="form-group my-2">
-        <div class="col-sm-4">
-          <h5 class="text-main">
-            <label for="description">Description</label>
-          </h5>
-        </div>
+            <label for="description" class="bold">Description</label>
         <textarea
           id="description"
           v-model="form.description"
@@ -102,9 +98,7 @@
         <!-- Hours col -->
         <div class="col-md-6 my-3">
           <div class="row center">
-            <h5 class="col-12 text-main center">
-              <label for="hours"> Hours </label>
-            </h5>
+              <label for="hours" class="col-12 bold center mb-2"> Hours </label>
             <div class="col-12 center">
               <div class="input-group bootstrap-touchspin">
                 <span class="input-group-btn input-group-prepend"><button class="btn" type="button" @click="decrementHours">
@@ -113,6 +107,7 @@
                   id="hours"
                   v-model="form.hours"
                   type="text"
+                  @focus="$event.target.value=''"
                   name="hours"
                   class="form-control"
                 ><span class="input-group-btn input-group-append"><button class="btn" type="button" @click="incrementHours">
@@ -126,9 +121,7 @@
         <!-- minutes col -->
         <div class="col-md-6 my-3">
           <div class="row center">
-            <h5 class="col-12 text-main center">
-              <label for="minutes">Minutes </label>
-            </h5>
+              <label for="minutes" class="col-12 bold center mb-2">Minutes </label>
             <div class="col-12 center">
               <div class="input-group bootstrap-touchspin">
                 <span class="input-group-btn input-group-prepend"><button class="btn" type="button" @click="decrementMinutes">
@@ -138,6 +131,7 @@
                   v-model="form.minutes"
                   type="text"
                   name="minutes"
+                  @focus="$event.target.value=''"
                   class="form-control"
                 ><span class="input-group-btn input-group-append"><button class="btn" type="button" @click="incrementMinutes">
                   +
@@ -191,6 +185,9 @@ export default {
       handler: function () {
         if (this.form.hours <= 0) {
           return (this.form.hours = 0)
+        } else if (this.form.hours >= 8) {
+          this.form.hours = 8
+          this.form.minutes = 0
         } else {
           this.timeError = ''
         }
@@ -199,7 +196,9 @@ export default {
     },
     'form.minutes': {
       handler: function () {
-        if (this.form.minutes <= 0) {
+        if (this.form.hours >= 8) {
+          this.form.minutes = 0
+        } else if (this.form.minutes <= 0) {
           return (this.form.minutes = 0)
         } else if (this.form.minutes >= 60) {
           this.form.hours++

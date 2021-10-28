@@ -1,6 +1,6 @@
 <template>
   <div class="row center-card">
-    <div class="body"></div>
+    <div class="body" />
     <card class=" w-50 py-5 px-3">
       <div class="col text-center mb-3">
         <fa class="user-icon" icon="user" />
@@ -24,7 +24,7 @@
                   type="email"
                   name="email"
                   placeholder="Type Email Address"
-                />
+                >
                 <has-error :form="form" field="email" />
               </div>
             </div>
@@ -45,7 +45,7 @@
                   type="password"
                   name="password"
                   placeholder="Type Password Here"
-                />
+                >
                 <has-error :form="form" field="password" />
               </div>
             </div>
@@ -54,18 +54,18 @@
           <!-- Remember Me -->
           <div class="mb-4 row">
             <div class="col-md mb-4">
-              <checkbox class="text-nowrap" v-model="remember" name="remember">
+              <checkbox v-model="remember" class="text-nowrap" name="remember">
                 {{ $t('remember_me') }}
               </checkbox>
             </div>
-            <div class="col-md">
+            <!-- <div class="col-md">
               <router-link
                 :to="{ name: 'password.request' }"
                 class="small ms-auto my-auto text-nowrap"
               >
                 {{ $t('forgot_password') }}
               </router-link>
-            </div>
+            </div> -->
           </div>
 
           <div class="mb-4 row">
@@ -97,7 +97,7 @@ export default {
 
   middleware: 'guest',
 
-  metaInfo() {
+  metaInfo () {
     return { title: this.$t('login') }
   },
 
@@ -110,7 +110,7 @@ export default {
   }),
 
   methods: {
-    async login() {
+    async login () {
       // Submit the form.
       const { data } = await this.form.post('/api/login')
 
@@ -127,7 +127,7 @@ export default {
       this.redirect()
     },
 
-    redirect() {
+    redirect () {
       const intendedUrl = Cookies.get('intended_url')
 
       if (intendedUrl) {

@@ -102,10 +102,10 @@ class TaskController extends Controller
     {
         // return $request;
         if ($request->project_id) {
-            $tasks = Task::where([['project_id', $request->project_id], ['user_id', $id]])->orderBy('created_at', 'DESC')->paginate(3);
+            $tasks = Task::where([['project_id', $request->project_id], ['user_id', $id]])->orderBy('created_at', 'DESC')->paginate(10);
             return TaskResource::collection($tasks);
         } else {
-            $tasks = Task::where('user_id', $id)->orderBy('created_at', 'DESC')->paginate(3);
+            $tasks = Task::where('user_id', $id)->orderBy('created_at', 'DESC')->paginate(10);
             return TaskResource::collection($tasks);
         }
     }

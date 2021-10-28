@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        return User::all();
+        return UserResource::collection(User::all());
+        return User::whereMonth('created_at', Carbon::now()->month)->get();
     }
     public function current(Request $request)
     {

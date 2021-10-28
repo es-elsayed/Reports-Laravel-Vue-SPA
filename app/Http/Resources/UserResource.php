@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -17,7 +18,13 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'role' => $this->role
+            'role' => $this->role,
+            'job' => $this->job,
+            // 'tasks_hours' => ($this->currentMonthTasks)
+            'month_hours' => (int)($this->currentMonthTasks->sum('hours') + $this->currentMonthTasks->sum('minutes')/60),
+            'month_minutes' => $this->currentMonthTasks->sum('minutes')%60,
+            'today_hours' => (int)($this->currentDayTasks->sum('hours') + $this->currentDayTasks->sum('minutes')/60),
+            'today_minutes' => $this->currentDayTasks->sum('minutes')%60,
         ];
     }
 }

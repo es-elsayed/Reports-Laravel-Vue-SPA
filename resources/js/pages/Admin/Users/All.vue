@@ -14,6 +14,7 @@ export default {
   components: {
     UserCard
   },
+  middleware: ['auth', 'admin'],
   computed: mapGetters({
     users: 'users/all'
   }),
