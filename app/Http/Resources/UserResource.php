@@ -20,6 +20,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'role' => $this->role,
             'job' => $this->job,
+            'image' => $this->image,
             // 'tasks_hours' => ($this->currentMonthTasks)
             'month_hours' => (int)($this->currentMonthTasks->sum('hours') + $this->currentMonthTasks->sum('minutes')/60),
             'month_minutes' => $this->currentMonthTasks->sum('minutes')%60,

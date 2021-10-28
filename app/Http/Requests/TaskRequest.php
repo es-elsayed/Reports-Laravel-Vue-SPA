@@ -41,7 +41,7 @@ class TaskRequest extends FormRequest
             'who_is_assign.exists'=>"Choose Person Name",
             'project_id.exists'=>"Choose Project Name",
             'min'=>'the minimum number is: 0',
-            'max'=> 'the maximun number is 59'
+            'max'=> 'the maximum number is 59'
         ];
     }
 }

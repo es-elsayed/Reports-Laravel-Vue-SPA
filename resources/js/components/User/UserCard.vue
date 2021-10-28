@@ -5,10 +5,8 @@
   >
     <div class="col card-style hover">
       <div class="row my-3 justify-content-center">
-        <div
-          class="col-12 img"
-          :style="'background-image:url(https://picsum.photos/200/300);'"
-        />
+        
+        <img class="col-12 img" :src="user.image">
       </div>
       <div class="row mb-3">
         <div class="col">
@@ -65,5 +63,6 @@ a {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 120%;
+  padding: 0;
 }
 </style>
